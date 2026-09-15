@@ -88,3 +88,9 @@
 - verdict: toast recipe now on real copy/save success in editor; checkbox accent on required. youform has quieter chrome — we keep stamp toast.
 - commit: 5f7373ea9545b5b4b6d5466181992d89e1f14b83
 
+## r12 — contrast
+- files: src/app/globals.css
+- shot: gauntlet/shots-r4/r12-contrast-desk.png, gauntlet/shots-r4/r12-contrast-fill.png
+- verdict: Toward dream target: hotter raised sheet, darker clip, hotter amber offsets. vs youform: still warm canary not cool white.
+- commit: 38cce2e074e2b08ef2dc2984948066becc111c4c
+

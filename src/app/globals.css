@@ -3,16 +3,16 @@
 :root {
   --board: #5f666e;
   --sheet: #f8f1b4;
-  --sheet-raised: #fff8d0;
+  --sheet-raised: #fff6c2;
   --ink: #0c0e10;
   --ink-soft: #2c3136;
   --ink-mute: #4a5158;
   --stamp: #b10f2a;
   --stamp-deep: #8a0c20;
-  --amber: #ef9017;
+  --amber: #f08a0a;
   --rule: #b7ab7a;
   --rule-strong: #8f845c;
-  --clip: #5c636b;
+  --clip: #3f454c;
   --focus: #b10f2a;
   --danger: #8a0c20;
   --ok: #2f5d3a;
