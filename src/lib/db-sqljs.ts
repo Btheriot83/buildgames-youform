@@ -1,9 +1,13 @@
 import fs from "fs";
 import path from "path";
-import { createRequire } from "module";
 import type { AppDatabase, RunResult, Statement } from "./db-types";
 
-const nodeRequire = createRequire(path.join(process.cwd(), "package.json"));
+/** Webpack-safe require — createRequire gets compiled to void 0 in Next server chunks. */
+function nodeRequire(id: string): unknown {
+  // eslint-disable-next-line no-new-func, @typescript-eslint/no-implied-eval
+  const req = new Function("id", "return require(id)") as (id: string) => unknown;
+  return req(id);
+}
 
 type SqlJsDatabase = {
   run(sql: string, params?: unknown[]): void;
@@ -106,7 +110,9 @@ function wrapDatabase(
 }
 
 async function initSqlJsEngine(): Promise<SqlJsStatic> {
-  const mod = nodeRequire(path.join(process.cwd(), "vendor", "sql-asm.js")) as
+  const mod = nodeRequire(
+    path.join(process.cwd(), "vendor", "sql-asm.js")
+  ) as
     | ((cfg?: Record<string, unknown>) => Promise<SqlJsStatic>)
     | { default: (cfg?: Record<string, unknown>) => Promise<SqlJsStatic> };
   const initSqlJs = typeof mod === "function" ? mod : mod.default;
