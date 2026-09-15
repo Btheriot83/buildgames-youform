@@ -226,7 +226,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-10 sm:py-16" onKeyDown={onKeyDown}>
       <p className="eyebrow mb-3">Public fill</p>
-      <p className="mb-4 max-w-xl text-[var(--ink-soft)]">One question on the clipboard — answer, then next.</p>
+      <p className="mb-4 max-w-xl text-[var(--ink-soft)]">Answer one, stamp next.</p>
       <div className="mb-4 flex items-center gap-3">
         <div
           className="h-[8px] min-w-0 flex-1 overflow-hidden border-2 border-[var(--ink)] bg-[var(--sheet-raised)]"

@@ -124,3 +124,9 @@
 - verdict: Larger question + thicker field rule toward dream fill focus; youform uses big sans question — we keep sheet serif.
 - commit: 241185564ff9dfafd0bc13aed8511a14beff3b1a
 
+## r18 — bar gap
+- files: src/app/globals.css, src/components/ConversationalForm.tsx
+- shot: gauntlet/shots-r4/r18-bargap-fill.png
+- verdict: Bigger seal dots + tighter cue copy; still clipboard progress language vs youform minimal bar.
+- commit: 317a7e65077bf9cb57a44a3365d1d3d365545541
+
