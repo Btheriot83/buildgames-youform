@@ -94,3 +94,9 @@
 - verdict: Toward dream target: hotter raised sheet, darker clip, hotter amber offsets. vs youform: still warm canary not cool white.
 - commit: 38cce2e074e2b08ef2dc2984948066becc111c4c
 
+## r13 — fonts
+- files: src/app/globals.css, src/components/Dashboard.tsx
+- shot: gauntlet/shots-r4/r13-fonts-desk.png
+- verdict: Mark + desk body toward dream target density; youform marketing type is softer sans — we keep Archivo mark.
+- commit: 3ccb74f5913b0e817ab0f60fd26006e597facc33
+
