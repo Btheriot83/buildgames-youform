@@ -28,3 +28,12 @@ Ink border + hard offset; denser padding — closer to youform OK targets.
 ### R8 — Editor secondary actions
 Add question / Draft from brief use secondary (amber-class outline) not ghost.
 
+### R9 — Demo rail title scale
+Walkthrough title → text-2xl sheet serif.
+### R10 — Job loop chips weight
+Write/Share/Read chips heavier weight + padding.
+### R11 — Raised sheet contrast
+Inherited deeper board / hotter canary from R1 (verified).
+### R12 — Hint text readability
+letter-hint → ink-soft + medium weight (less wash).
+

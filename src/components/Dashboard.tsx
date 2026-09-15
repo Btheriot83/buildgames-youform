@@ -163,7 +163,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
         <div className="demo-rail">
           <div>
             <p className="eyebrow">Walkthrough · 60 seconds</p>
-            <p className="mt-1 font-sheet text-xl text-[var(--ink)]">{displayTitle(demo.title)}</p>
+            <p className="mt-1 font-sheet text-2xl tracking-tight text-[var(--ink)]">{displayTitle(demo.title)}</p>
             <ol className="job-loop mt-3" aria-label="Walkthrough steps">
               <span>1 Edit questions</span>
               <span>2 Open public fill</span>
