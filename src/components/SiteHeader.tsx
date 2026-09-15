@@ -24,10 +24,10 @@ export function SiteHeader({
               className="site-mark-lg object-cover"
             />
             <div>
-              <div className="font-mark text-xl leading-none tracking-tight group-hover:text-[var(--stamp)] transition-colors">
+              <div className="font-mark text-lg leading-none tracking-tight group-hover:text-[var(--stamp)] transition-colors">
                 Ember Forms
               </div>
-              <div className="eyebrow mt-1.5 !text-[var(--ink-mute)]">intake clipboard · not a survey wizard</div>
+              <div className="eyebrow mt-1.5 !text-[var(--ink-mute)]">Form builder · write → fill → replies</div>
             </div>
           </Link>
           {trail && trail.length > 0 && (
