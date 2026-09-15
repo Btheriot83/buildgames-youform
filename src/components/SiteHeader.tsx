@@ -6,21 +6,21 @@ export function SiteHeader({
   trail?: Array<{ href?: string; label: string }>;
 }) {
   return (
-    <header className="border-b border-[var(--rule)] bg-[color-mix(in_srgb,var(--paper)_88%,white)]/80 backdrop-blur-sm">
+    <header className="border-b border-[var(--rule)] bg-[var(--paper-raised)]">
       <div className="shell flex items-center justify-between gap-4 py-4">
         <Link href="/" className="flex items-center gap-3 group">
           <img
             src="/art/ember-mark.svg"
             alt=""
-            width={36}
-            height={36}
+            width={34}
+            height={34}
             className="rounded-sm"
           />
           <div>
-            <div className="font-display text-lg leading-none tracking-tight group-hover:text-[var(--ember)] transition-colors">
+            <div className="font-mark text-lg leading-none tracking-tight group-hover:text-[var(--ember)] transition-colors">
               Ember Forms
             </div>
-            <div className="eyebrow mt-1">private · local · conversational</div>
+            <div className="eyebrow mt-1 !text-[var(--ink-mute)]">letters, not surveys</div>
           </div>
         </Link>
         {trail && trail.length > 0 && (

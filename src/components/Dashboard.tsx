@@ -92,16 +92,16 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="eyebrow">Desk</p>
-          <h1 className="font-display mt-2 text-4xl tracking-tight sm:text-5xl">
-            Your forms
+          <h1 className="font-letter mt-2 text-4xl tracking-tight sm:text-5xl">
+            Correspondence desk
           </h1>
           <p className="mt-3 max-w-xl text-[var(--ink-soft)]">
-            Schema in, conversation out. Share a link, collect answers, export CSV.
+            One letter at a time. Draft the questions from a brief, share the link, read the replies.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button type="button" className="btn btn-primary" onClick={createForm} disabled={busy}>
-            New form
+            New letter
           </button>
           <button
             type="button"
@@ -147,11 +147,15 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
         </div>
         <div className="t-skel-content">
           {forms.length === 0 ? (
-            <div className="card overflow-hidden p-8 text-center">
-              <img src="/art/empty-desk.svg" alt="" className="mx-auto max-w-sm" />
-              <button type="button" className="btn btn-primary mt-6" onClick={createForm} disabled={busy}>
-                Start a form
-              </button>
+            <div className="card overflow-hidden text-center">
+              <img src="/art/empty-desk.png" alt="" className="mx-auto max-h-56 w-full object-cover" />
+              <div className="p-8">
+                <p className="font-letter text-2xl">Nothing on the blotter yet</p>
+                <p className="mt-2 text-sm text-[var(--ink-mute)]">Begin blank, or open a letter and let the brief draft the questions.</p>
+                <button type="button" className="btn btn-primary mt-6" onClick={createForm} disabled={busy}>
+                  Write the first letter
+                </button>
+              </div>
             </div>
           ) : (
             <ul className="divide-y divide-[var(--rule)] border border-[var(--rule)] bg-[var(--paper-raised)] shadow-[var(--shadow)]">
@@ -160,7 +164,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
                   <div className="min-w-0">
                     <Link
                       href={`/forms/${f.id}`}
-                      className="font-display text-xl tracking-tight hover:text-[var(--ember)]"
+                      className="font-letter text-xl tracking-tight hover:text-[var(--ember)]"
                     >
                       {f.title}
                     </Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { FieldType, FormField, FormRecord, FormSchema } from "@/lib/types";
 import { newFieldId } from "@/lib/validation";
@@ -17,6 +17,8 @@ const FIELD_TYPES: { value: FieldType; label: string }[] = [
 
 type Props = { form: FormRecord };
 
+type AiMeta = { available: boolean; provider: "xai" | "openai" | "anthropic" | "none" };
+
 export function FormEditor({ form }: Props) {
   const router = useRouter();
   const [title, setTitle] = useState(form.title);
@@ -27,6 +29,17 @@ export function FormEditor({ form }: Props) {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{ tone: "ok" | "error" | "info"; text: string } | null>(null);
   const [copied, setCopied] = useState(false);
+  const [brief, setBrief] = useState("");
+  const [drafting, setDrafting] = useState(false);
+  const [aiMeta, setAiMeta] = useState<AiMeta>({ available: false, provider: "none" });
+  const [aiNote, setAiNote] = useState<string | null>(null);
+
+  useEffect(() => {
+    void fetch("/api/ai/schema")
+      .then((r) => r.json())
+      .then((d: AiMeta) => setAiMeta(d))
+      .catch(() => setAiMeta({ available: false, provider: "none" }));
+  }, []);
 
   const shareUrl = useMemo(() => {
     const origin =
@@ -67,6 +80,43 @@ export function FormEditor({ form }: Props) {
       required: true,
     };
     setSchema((s) => ({ ...s, fields: [...s.fields, field] }));
+  }
+
+  async function draftFromBrief() {
+    if (!brief.trim()) {
+      setMessage({ tone: "error", text: "Write a plain-English brief first." });
+      return;
+    }
+    setDrafting(true);
+    setMessage(null);
+    setAiNote(null);
+    try {
+      const res = await fetch("/api/ai/schema", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ brief }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setMessage({ tone: "error", text: data.error || "Draft failed" });
+        return;
+      }
+      setTitle(data.title || title);
+      setDescription(data.description || description);
+      setSchema(data.schema);
+      setAiNote(data.note || null);
+      setMessage({
+        tone: "ok",
+        text:
+          data.mode === "llm"
+            ? `Schema drafted via ${data.provider}. Review before saving.`
+            : "Local heuristic draft (no API key). Review before saving.",
+      });
+    } catch {
+      setMessage({ tone: "error", text: "Network error while drafting." });
+    } finally {
+      setDrafting(false);
+    }
   }
 
   async function save() {
@@ -117,35 +167,76 @@ export function FormEditor({ form }: Props) {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+    <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
       <section className="card p-6 sm:p-8">
         <p className="eyebrow">Schema</p>
-        <h1 className="font-display mt-2 text-3xl tracking-tight">Edit form</h1>
+        <h1 className="font-letter mt-2 text-3xl tracking-tight">Compose the letter</h1>
+
+        <div className="mt-6 rounded-sm border border-[var(--rule)] bg-[#fffdf9] p-4 sm:p-5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="eyebrow">AI from brief</p>
+            <span className="degraded-pill">
+              {aiMeta.available
+                ? aiMeta.provider === "xai"
+                  ? "xAI live"
+                  : aiMeta.provider === "anthropic"
+                    ? "LLM live"
+                    : "OpenAI live"
+                : "degraded · local draft"}
+            </span>
+          </div>
+          <p className="mt-2 text-sm text-[var(--ink-soft)]">
+            Tell us what you need to ask. We draft the questions; you keep the pen.
+          </p>
+          <textarea
+            className="field-box mt-3 min-h-[96px]"
+            placeholder="e.g. Wedding RSVP: name, email, attending yes/no, guest count, meal choice (chicken/fish/veg), notes"
+            value={brief}
+            onChange={(e) => setBrief(e.target.value)}
+            aria-label="Plain-English form brief"
+          />
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button
+              type="button"
+              className="btn btn-moss"
+              onClick={draftFromBrief}
+              disabled={drafting}
+            >
+              {drafting ? "Drafting…" : "Draft from brief"}
+            </button>
+            {!aiMeta.available && (
+              <span className="self-center text-xs text-[var(--ink-mute)]">
+                Set XAI_API_KEY / GROK_API_KEY / OPENAI_API_KEY for model drafts
+              </span>
+            )}
+          </div>
+          {aiNote && <p className="mt-2 text-xs text-[var(--ink-mute)]">{aiNote}</p>}
+        </div>
 
         <div className="mt-6 space-y-4">
           <div>
             <label className="label" htmlFor="title">Title</label>
-            <input id="title" className="field" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input id="title" className="field-box" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div>
             <label className="label" htmlFor="desc">Description</label>
-            <textarea id="desc" className="field min-h-[88px]" value={description} onChange={(e) => setDescription(e.target.value)} />
+            <textarea id="desc" className="field-box min-h-[88px]" value={description} onChange={(e) => setDescription(e.target.value)} />
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="label" htmlFor="slug">Public slug</label>
-              <input id="slug" className="field font-mono text-sm" value={slug} onChange={(e) => setSlug(e.target.value)} />
+              <input id="slug" className="field-box font-mono text-sm" value={slug} onChange={(e) => setSlug(e.target.value)} />
             </div>
             <div>
               <label className="label" htmlFor="webhook">Webhook URL (optional)</label>
-              <input id="webhook" className="field font-mono text-sm" placeholder="https://…" value={webhook} onChange={(e) => setWebhook(e.target.value)} />
+              <input id="webhook" className="field-box font-mono text-sm" placeholder="https://…" value={webhook} onChange={(e) => setWebhook(e.target.value)} />
             </div>
           </div>
           <div>
             <label className="label" htmlFor="thanks">Thank-you message</label>
             <input
               id="thanks"
-              className="field"
+              className="field-box"
               value={schema.thankYouMessage || ""}
               onChange={(e) => setSchema({ ...schema, thankYouMessage: e.target.value })}
             />
@@ -155,23 +246,23 @@ export function FormEditor({ form }: Props) {
         <hr className="rule my-8" />
 
         <div className="flex items-center justify-between gap-3">
-          <h2 className="font-display text-xl">Questions</h2>
+          <h2 className="font-letter text-xl">Questions</h2>
           <button type="button" className="btn btn-ghost" onClick={addField}>
-            Add question
+            Add a line
           </button>
         </div>
 
         <ul className="mt-4 space-y-4">
           {schema.fields.length === 0 && (
             <li className="rounded-sm border border-dashed border-[var(--rule-strong)] p-6 text-[var(--ink-mute)]">
-              No questions yet — add one to open the conversation.
+              No questions yet — draft from a brief or add one by hand.
             </li>
           )}
           {schema.fields.map((f, i) => (
             <li key={f.id} className="rounded-sm border border-[var(--rule)] bg-[#fffdf9] p-4">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <span className="font-mono text-xs uppercase tracking-wider text-[var(--ink-mute)]">
-                  #{i + 1} · {f.id}
+                  #{i + 1}
                 </span>
                 <div className="flex gap-1">
                   <button type="button" className="btn btn-ghost !px-2 !py-1 text-xs" onClick={() => moveField(f.id, -1)} aria-label="Move up">↑</button>
@@ -182,13 +273,13 @@ export function FormEditor({ form }: Props) {
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div className="sm:col-span-2">
                   <label className="label" htmlFor={`label-${f.id}`}>Label</label>
-                  <input id={`label-${f.id}`} className="field" value={f.label} onChange={(e) => updateField(f.id, { label: e.target.value })} />
+                  <input id={`label-${f.id}`} className="field-box" value={f.label} onChange={(e) => updateField(f.id, { label: e.target.value })} />
                 </div>
                 <div>
                   <label className="label" htmlFor={`type-${f.id}`}>Type</label>
                   <select
                     id={`type-${f.id}`}
-                    className="field"
+                    className="field-box"
                     value={f.type}
                     onChange={(e) => updateField(f.id, { type: e.target.value as FieldType })}
                   >
@@ -212,7 +303,7 @@ export function FormEditor({ form }: Props) {
                     <label className="label" htmlFor={`opts-${f.id}`}>Options (comma-separated)</label>
                     <input
                       id={`opts-${f.id}`}
-                      className="field"
+                      className="field-box"
                       value={(f.options || []).join(", ")}
                       onChange={(e) =>
                         updateField(f.id, {
@@ -229,7 +320,7 @@ export function FormEditor({ form }: Props) {
                   <label className="label" htmlFor={`ph-${f.id}`}>Placeholder</label>
                   <input
                     id={`ph-${f.id}`}
-                    className="field"
+                    className="field-box"
                     value={f.placeholder || ""}
                     onChange={(e) => updateField(f.id, { placeholder: e.target.value })}
                   />
@@ -241,7 +332,7 @@ export function FormEditor({ form }: Props) {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <button type="button" className="btn btn-primary" onClick={save} disabled={saving}>
-            {saving ? "Saving…" : "Save form"}
+            {saving ? "Saving…" : "Save letter"}
           </button>
           <button type="button" className="btn btn-ghost text-[var(--danger)]" onClick={removeForm}>
             Delete
@@ -274,7 +365,7 @@ export function FormEditor({ form }: Props) {
           </p>
         </div>
         <div className="card overflow-hidden">
-          <img src="/art/ledger-flourish.svg" alt="" className="w-full p-4 opacity-80" />
+          <img src="/art/wax-seal.png" alt="" className="mx-auto w-40 p-6" />
         </div>
       </aside>
     </div>
