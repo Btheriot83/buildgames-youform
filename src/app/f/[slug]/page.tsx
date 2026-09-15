@@ -28,7 +28,7 @@ export default async function PublicFormPage({ params }: Props) {
           <img src="/art/ember-mark.svg" alt="" width={28} height={28} />
           <span className="font-mark text-sm tracking-tight">Ember Forms</span>
         </Link>
-        <span className="letter-kicker">Public reply</span>
+        <span className="letter-kicker">Reply</span>
       </div>
       <ConversationalForm
         slug={form.slug}

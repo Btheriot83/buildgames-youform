@@ -172,9 +172,9 @@ export function FormEditor({ form }: Props) {
         <p className="eyebrow">Schema</p>
         <h1 className="font-letter mt-2 text-3xl tracking-tight">Compose the letter</h1>
 
-        <div className="mt-6 rounded-sm border border-[var(--rule)] bg-[#fffdf9] p-4 sm:p-5">
+        <div className="mt-6 border-b border-[var(--rule)] pb-6">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="eyebrow">AI from brief</p>
+            <p className="eyebrow">From a brief</p>
             <span className="degraded-pill">
               {aiMeta.available
                 ? aiMeta.provider === "xai"
@@ -346,6 +346,19 @@ export function FormEditor({ form }: Props) {
       </section>
 
       <aside className="space-y-4">
+        {schema.fields.length > 0 && (
+          <div className="letter-sheet !min-h-0 p-5">
+            <p className="relative z-[1] eyebrow">Letter preview</p>
+            <ol className="relative z-[1] mt-3 space-y-2">
+              {schema.fields.map((f, i) => (
+                <li key={f.id} className="font-letter text-[1.05rem] leading-snug text-[var(--ink)]">
+                  <span className="letter-kicker mr-2">{i + 1}</span>
+                  {f.label}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
         <div className="card p-6">
           <p className="eyebrow">Share</p>
           <p className="mt-2 break-all font-mono text-sm text-[var(--ink-soft)]">{shareUrl}</p>

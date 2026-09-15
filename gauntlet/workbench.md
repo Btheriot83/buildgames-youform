@@ -38,3 +38,19 @@ Mobbin MCP returned paid-plan gate (2026-09-14 PT). Bar = live original screensh
 **Critic (fresh, screenshots only):** Aesthetic still blotter. Desk now reads as stacked letters — clearer. Intro quieter; title no longer SAMPLE-tagged. vs Youform fill: original still wins full-bleed focus; candidate closer on craft.
 **Score:** **5.8/10**. Original still preferred blind on fill stage.
 **Biggest gap:** Choice chips require extra Continue click (Youform OK is immediate); editor AI panel still a bit “settings card”; question type size could grow.
+
+## Round 3 — Choice auto-advance + letter preview (identity locked)
+**Built:** Boolean/select chips auto-turn the page after 220ms; editor aside shows Literata letter preview of drafted questions.
+**Critic gap closed:** Extra Continue click vs Youform OK.
+**Score:** **6.2/10**. Original still edging blind fill for full-bleed marketing polish; candidate stronger on correspondence metaphor.
+**Biggest remaining:** Question type size; residual AI-panel chrome.
+
+## Round 4 — Larger questions; choice-only chrome (identity locked)
+**Built:** Question clamp up to ~2.65rem; hide Continue on boolean/select (hint: Choose a line — it turns the page).
+**Score:** **6.5/10**. Closer on one-question focus.
+**Biggest remaining:** Public “Reply” chrome; AI panel card weight.
+
+## Round 5 — Subtractive finish (identity locked)
+**Built:** Public kicker → “Reply”; AI panel from bordered card → hairline section “From a brief”.
+**Score:** **6.7/10**. Still below 8 by honesty rule; original preferred only on SaaS completeness / AI marketing theater — core letter job competitive.
+**Blind A/B:** Candidate preferred for craft/anti-slop; original for brand familiarity of Typeform-like fill. Forced improvement admitted on correspondence execution.
