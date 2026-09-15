@@ -83,7 +83,7 @@ export function ResponseTable({ form, initialResponses }: Props) {
               <li key={r.id} className="letter-sheet letter-tray !min-h-0 p-5">
                 <div className="relative z-[1] flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="font-sheet text-xl text-[var(--ink)]">
+                    <p className="font-sheet text-2xl text-[var(--ink)]">
                       {lead ? fmt(r.answers[lead.id]) : "Reply"}
                     </p>
                     <p className="mt-1 font-mono text-xs uppercase tracking-wider text-[var(--ink-mute)]">
