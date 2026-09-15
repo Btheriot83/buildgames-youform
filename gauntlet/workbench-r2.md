@@ -17,3 +17,7 @@
 **Visible delta:** Thicker job tape (Write/Share/Read); desk copy names form builder explicitly; StatusBanner flat (no color-mix wash); seed_v3 forces AZ diesel + Mesa yard demo forms.
 **PR:** pending
 
+### R3 — Public fill stage denser
+**Visible delta:** Wider fill stage (max-w-3xl); “Public fill · one question at a time” eyebrow; thicker flat ink progress bar; larger question type.
+**PR:** pending
+

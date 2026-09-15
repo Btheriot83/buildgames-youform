@@ -224,10 +224,11 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
   }
 
   return (
-    <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:py-14" onKeyDown={onKeyDown}>
+    <div className="mx-auto w-full max-w-3xl px-4 py-8 sm:py-14" onKeyDown={onKeyDown}>
+      <p className="eyebrow mb-3">Public fill · one question at a time</p>
       <div className="mb-4 flex items-center gap-3">
         <div
-          className="h-[2px] min-w-0 flex-1 overflow-hidden bg-[var(--rule)]"
+          className="h-[6px] min-w-0 flex-1 overflow-hidden border-2 border-[var(--ink)] bg-[var(--sheet-raised)]"
           role="progressbar"
           aria-valuenow={Math.min(100, Math.round(progress))}
           aria-valuemin={0}
@@ -235,7 +236,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
           aria-label="Form progress"
         >
           <div
-            className="progress-fill h-full bg-[var(--ember)]"
+            className="progress-fill h-full bg-[var(--stamp)]"
             style={{ width: `${Math.min(100, progress)}%` }}
           />
         </div>
