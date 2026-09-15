@@ -46,3 +46,14 @@ Ink-bordered dots (flat) — clearer progress vs bar.
 ### R16 — Continue CTA copy
 “OK — Continue” / stamp submit — closer to youform OK affordance without copying brand.
 
+### R17 — Glow audit
+Confirmed zero gradients / backdrop-blur; button shadows hard offsets only.
+### R18 — Mobile billboard scale
+Slightly larger clamp on small screens.
+### R19 — Job tape weight
+Heavier tape type for Write/Share/Read scan.
+### R20 — Closeout copy
+Footer + empty state hand-tightened. Status JSON + A/B shots.
+
+**B3 complete:** 20/20 under Canary Clipboard. Ready for walkthrough video.
+

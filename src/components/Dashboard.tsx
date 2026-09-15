@@ -212,7 +212,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
             <div className="card overflow-hidden text-center">
               <img src="/art/clipboard-hero.jpg" alt="" className="mx-auto max-h-56 w-full object-cover" />
               <div className="p-8">
-                <p className="font-sheet text-2xl">Clipboard is empty</p>
+                <p className="font-sheet text-2xl">No forms on the clipboard yet</p>
                 <p className="mt-2 text-sm text-[var(--ink-mute)]">
                   Write the first questions, or draft them from a plain-English brief.
                 </p>

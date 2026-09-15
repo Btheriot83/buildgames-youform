@@ -398,7 +398,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
               </button>
               {field.type !== "boolean" && field.type !== "select" ? (
                 <button type="button" className="btn btn-primary" onClick={goNext}>
-                  {index >= fields.length - 1 ? "Stamp & submit" : "Continue"}
+                  {index >= fields.length - 1 ? "Stamp & submit" : "OK — Continue"}
                 </button>
               ) : (
                 <span className="letter-hint">Pick one — next question loads</span>
