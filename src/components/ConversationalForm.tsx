@@ -65,6 +65,15 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
     });
   }
 
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  function scheduleAdvance(run: () => void) {
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    advanceTimer.current = setTimeout(run, 220);
+  }
+  useEffect(() => () => {
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+  }, []);
+
   const goNext = useCallback(() => {
     setError(null);
     if (!field) return;
@@ -308,6 +317,17 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
                         onClick={() => {
                           setDraft(o);
                           setError(null);
+                          scheduleAdvance(() => {
+                            const nextAnswers = { ...answers, [field.id]: o };
+                            setAnswers(nextAnswers);
+                            setDraft("");
+                            setBoolDraft(null);
+                            if (index >= fields.length - 1) void submit(nextAnswers);
+                            else {
+                              setIndex((i) => i + 1);
+                              setAnimKey((k) => k + 1);
+                            }
+                          });
                         }}
                       >
                         <span className="font-letter text-[1.05rem]">{o}</span>
@@ -328,6 +348,17 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
                         onClick={() => {
                           setBoolDraft(opt.v);
                           setError(null);
+                          scheduleAdvance(() => {
+                            const nextAnswers = { ...answers, [field.id]: opt.v };
+                            setAnswers(nextAnswers);
+                            setDraft("");
+                            setBoolDraft(null);
+                            if (index >= fields.length - 1) void submit(nextAnswers);
+                            else {
+                              setIndex((i) => i + 1);
+                              setAnimKey((k) => k + 1);
+                            }
+                          });
                         }}
                         aria-pressed={boolDraft === opt.v}
                       >
@@ -363,12 +394,18 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
               <button type="button" className="btn btn-ghost" onClick={goBack}>
                 Back
               </button>
-              <button type="button" className="btn btn-primary" onClick={goNext}>
-                {index >= fields.length - 1 ? "Press the seal" : "Continue"}
-              </button>
-              <span className="letter-hint">
-                {field.required ? "Required" : "Optional"} · press Enter
-              </span>
+              {field.type !== "boolean" && field.type !== "select" ? (
+                <button type="button" className="btn btn-primary" onClick={goNext}>
+                  {index >= fields.length - 1 ? "Press the seal" : "Continue"}
+                </button>
+              ) : (
+                <span className="letter-hint">Choose a line — it turns the page</span>
+              )}
+              {field.type !== "boolean" && field.type !== "select" ? (
+                <span className="letter-hint">
+                  {field.required ? "Required" : "Optional"} · Enter
+                </span>
+              ) : null}
             </div>
           </div>
         </div>

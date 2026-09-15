@@ -155,7 +155,7 @@ a { color: inherit; text-decoration: none; }
 .letter-question {
   font-family: var(--font-letter), Georgia, serif;
   font-weight: 520;
-  font-size: clamp(1.65rem, 3.4vw, 2.35rem);
+  font-size: clamp(1.85rem, 4vw, 2.65rem);
   line-height: 1.25;
   letter-spacing: -0.015em;
   color: var(--ink);
