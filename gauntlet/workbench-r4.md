@@ -49,3 +49,9 @@
 - verdict: Deeper aluminum board + stronger rules; canary pops more. youform.com stays light gray/white — we intentionally diverge on material.
 - commit: 4c10030121881be6de947691895509d8c7d67db7
 
+## r8 — fonts
+- files: src/app/globals.css
+- shot: gauntlet/shots-r4/r8-fonts-desk.png
+- verdict: Billboard + job tape heavier; closer to youform marketing hierarchy weight, still serif/clipboard voice.
+- commit: 97ac4f8aa65ff4bbe9d3bebc2e1248fb0aa6e242
+
