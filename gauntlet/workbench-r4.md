@@ -50,95 +50,95 @@
 - files: src/components/ConversationalForm.tsx, gauntlet/workbench-r4.md
 - shot: gauntlet/shots-r4/r5-bargap-fill.png, gauntlet/shots-r4/r5-demo-desk.png, gauntlet/shots-r4/r5-bar-home.png
 - verdict: Intro OK CTA closer to youform.com OK affordance; bar A/B captured — youform still cooler/whiter, we keep canary clipboard.
-- commit: c8f8211b08a99499a8d7e6a6163067fb60bd3cd0
+- commit: aece11ac2181e70592d0a77af35e5a6940d14520
 
 ## r6 — buttons
 - files: src/components/ConversationalForm.tsx, src/components/FormEditor.tsx
 - shot: gauntlet/shots-r4/r6-buttons-fill-q.png, gauntlet/shots-r4/r6-success-check-done.png
 - verdict: success-check now fires on real submit-done (not CSS-only); toast on copy if wired. youform.com uses soft confirm — we keep stamp-red check on canary.
-- commit: 06e65fe2351080f210a8f892bddf90fc176b1e0d
+- commit: b40e3d75d64006820b0fa67d07a35d8aa63200db
 
 ## r7 — contrast
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r7-contrast-desk.png
 - verdict: Deeper aluminum board + stronger rules; canary pops more. youform.com stays light gray/white — we intentionally diverge on material.
-- commit: 4c10030121881be6de947691895509d8c7d67db7
+- commit: 935a6a533ab6d19aed287a77abb7feb7b5c0edf9
 
 ## r8 — fonts
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r8-fonts-desk.png
 - verdict: Billboard + job tape heavier; closer to youform marketing hierarchy weight, still serif/clipboard voice.
-- commit: 97ac4f8aa65ff4bbe9d3bebc2e1248fb0aa6e242
+- commit: e56c162e239c5da2ee24847798f19d52ebaf61e9
 
 ## r9 — buttons
 - files: src/components/Dashboard.tsx
 - shot: gauntlet/shots-r4/r9-buttons-desk.png
 - verdict: Row actions quieter Edit/Replies, louder Open fill — closer to youform focus on the fill path.
-- commit: 81f4bbd72fe5b42add0a23a6eb99aeeda7fae8ba
+- commit: fc984ed062dd6b8db3a5bce89afbed3c8fb8880f
 
 ## r10 — bar gap
 - files: src/components/ConversationalForm.tsx, gauntlet/workbench-r4.md, gauntlet/shots-r4/dream-baseline-desk.png, gauntlet/shots-r4/dream-target-ref.png
 - shot: gauntlet/shots-r4/r10-bargap-fill.png, gauntlet/shots-r4/r10-bar-home.png
 - verdict: Intro CTA now literal OK vs youform; dream-loop target locked from desk baseline. Bar still cooler/marketing; we keep clipboard job desk.
-- commit: dfe12283bf34b7ecdeddbd66d92923b0e11a5f0b
+- commit: c01786979f2e86d061a3d352a019fc7f9a8da972
 
 ## r11 — buttons
 - files: src/components/FormEditor.tsx
 - shot: gauntlet/shots-r4/r11-buttons-editor.png
 - verdict: toast recipe now on real copy/save success in editor; checkbox accent on required. youform has quieter chrome — we keep stamp toast.
-- commit: 5f7373ea9545b5b4b6d5466181992d89e1f14b83
+- commit: c21bf9f6a6a4474eb5906f597e982b049cc2bcdf
 
 ## r12 — contrast
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r12-contrast-desk.png, gauntlet/shots-r4/r12-contrast-fill.png
 - verdict: Toward dream target: hotter raised sheet, darker clip, hotter amber offsets. vs youform: still warm canary not cool white.
-- commit: 38cce2e074e2b08ef2dc2984948066becc111c4c
+- commit: bf31dddb29c6c6ce88fb695ee6426a11b5daa37c
 
 ## r13 — fonts
 - files: src/app/globals.css, src/components/Dashboard.tsx
 - shot: gauntlet/shots-r4/r13-fonts-desk.png
 - verdict: Mark + desk body toward dream target density; youform marketing type is softer sans — we keep Archivo mark.
-- commit: 3ccb74f5913b0e817ab0f60fd26006e597facc33
+- commit: 439872d6ed855e38240e8036ed896ca27440e2b7
 
 ## r14 — bar gap
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r14-bargap-desk-rail.png
 - verdict: Tighter billboard/demo-rail toward dream target composition; youform home is marketing-hero, ours stays operational desk.
-- commit: fb25fe7f407378ff96f148215858bbbe2069eae0
+- commit: d384d02bab4060ece7f35b0a842ba2d02fdcb38b
 
 ## r15 — contrast
 - files: src/app/globals.css, src/components/ConversationalForm.tsx
 - shot: gauntlet/shots-r4/r15-contrast-fill.png, gauntlet/shots-r4/r15-bar-home.png
 - verdict: Thicker stamp progress + darker secondary text; bar A/B — youform progress is minimal; ours stays clipboard hole-punch language.
-- commit: d855cb0cdb50ccdf15c50861b0b06051c80eb5b7
+- commit: 7f84575d58b998b556b682570111e0da76ce3c12
 
 ## r16 — buttons
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r16-buttons-fill.png
 - verdict: Choice chips heavier hit targets toward dream/youform OK targets; still hard-ink not soft pills.
-- commit: b98ee45cb10d804c9694313a79cf230bb40eb57c
+- commit: 9a1ca5042b9d0ffeb8d989ff18ee139470be0cd8
 
 ## r17 — fonts
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r17-fonts-fill.png
 - verdict: Larger question + thicker field rule toward dream fill focus; youform uses big sans question — we keep sheet serif.
-- commit: 241185564ff9dfafd0bc13aed8511a14beff3b1a
+- commit: 37ef1840101d314e8486efef1a9450b086936422
 
 ## r18 — bar gap
 - files: src/app/globals.css, src/components/ConversationalForm.tsx
 - shot: gauntlet/shots-r4/r18-bargap-fill.png
 - verdict: Bigger seal dots + tighter cue copy; still clipboard progress language vs youform minimal bar.
-- commit: 317a7e65077bf9cb57a44a3365d1d3d365545541
+- commit: cdc790d99ef96d738cc75e80ae221e2a22758110
 
 ## r19 — contrast
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r19-contrast-desk.png
 - verdict: Card/plate shadow weights toward dream target materials; youform avoids hard offsets entirely.
-- commit: 43f25d5788faabe24afbb246c566d127c0253655
+- commit: c6a7d2d9264dc51106214952b14a824b2beea90a
 
 ## r20 — buttons
 - files: src/app/globals.css, src/app/page.tsx
 - shot: gauntlet/shots-r4/r20-buttons-desk.png, gauntlet/shots-r4/r20-bar-home.png
 - verdict: Ghost buttons readable on board + footer tighten; final bar A/B — youform wins cool marketing polish; Ember wins clipboard job clarity.
-- commit: 6220054dc7d84783e4e559862f61c550aec71058
+- commit: 2a8085de5e39a3ef8409c15b03c0572dcada4166
 
