@@ -1,13 +1,8 @@
 import fs from "fs";
 import path from "path";
+import vm from "vm";
+import Module from "module";
 import type { AppDatabase, RunResult, Statement } from "./db-types";
-
-/** Webpack-safe require — createRequire gets compiled to void 0 in Next server chunks. */
-function nodeRequire(id: string): unknown {
-  // eslint-disable-next-line no-new-func, @typescript-eslint/no-implied-eval
-  const req = new Function("id", "return require(id)") as (id: string) => unknown;
-  return req(id);
-}
 
 type SqlJsDatabase = {
   run(sql: string, params?: unknown[]): void;
@@ -109,16 +104,37 @@ function wrapDatabase(
   };
 }
 
-async function initSqlJsEngine(): Promise<SqlJsStatic> {
-  const mod = nodeRequire(
-    path.join(process.cwd(), "vendor", "sql-asm.js")
-  ) as
+/**
+ * Load vendored sql-asm.js via vm (no webpack require/createRequire).
+ * File is traced onto the lambda via outputFileTracingIncludes.
+ */
+function loadVendorAsm(filePath: string): (
+  cfg?: Record<string, unknown>
+) => Promise<SqlJsStatic> {
+  const code = fs.readFileSync(filePath, "utf8");
+  const m: { exports: unknown } = { exports: {} };
+  const wrapped = Module.wrap(code);
+  const compiled = vm.runInThisContext(wrapped, { filename: filePath });
+  const fakeRequire = () => {
+    throw new Error("sql-asm nested require not supported");
+  };
+  compiled(m.exports, fakeRequire, m, filePath, path.dirname(filePath));
+  const exp = m.exports as
     | ((cfg?: Record<string, unknown>) => Promise<SqlJsStatic>)
     | { default: (cfg?: Record<string, unknown>) => Promise<SqlJsStatic> };
-  const initSqlJs = typeof mod === "function" ? mod : mod.default;
-  if (typeof initSqlJs !== "function") {
+  const init = typeof exp === "function" ? exp : exp.default;
+  if (typeof init !== "function") {
     throw new Error("sql-asm.js did not export an initializer function");
   }
+  return init;
+}
+
+async function initSqlJsEngine(): Promise<SqlJsStatic> {
+  const filePath = path.join(process.cwd(), "vendor", "sql-asm.js");
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Missing vendor sql-asm at ${filePath}`);
+  }
+  const initSqlJs = loadVendorAsm(filePath);
   return (await initSqlJs({})) as SqlJsStatic;
 }
 
