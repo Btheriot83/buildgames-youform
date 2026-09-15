@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { createRequire } from "module";
 import type { AppDatabase, RunResult, Statement } from "./db-types";
 
 type SqlJsDatabase = {
@@ -103,14 +104,12 @@ function wrapDatabase(
 }
 
 /**
- * Load sql.js without a filesystem .wasm path.
- * Uses the asm.js build so Vercel serverless never hits ENOENT on sql-wasm.wasm.
+ * Load sql.js asm.js via createRequire so Vercel file tracing can ship the file
+ * without needing sql-wasm.wasm on disk.
  */
 async function initSqlJsEngine(): Promise<SqlJsStatic> {
-  const asmMod = await import(
-    /* webpackIgnore: true */ "sql.js/dist/sql-asm.js"
-  );
-  const initSqlJs = (asmMod.default ?? asmMod) as (
+  const require = createRequire(path.join(process.cwd(), "package.json"));
+  const initSqlJs = require("sql.js/dist/sql-asm.js") as (
     cfg?: Record<string, unknown>
   ) => Promise<SqlJsStatic>;
   return (await initSqlJs({})) as SqlJsStatic;
