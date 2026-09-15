@@ -47,3 +47,6 @@ playwright-report/
 polish-shots/
 .env
 .env.local
+
+# dream-loop working files
+.dream-loop/

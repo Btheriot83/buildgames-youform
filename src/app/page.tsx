@@ -23,7 +23,7 @@ export default async function HomePage() {
       </main>
       <footer className="shell pb-10 pt-4 text-sm text-[var(--ink-mute)]">
         <hr className="rule mb-6" />
-        Write questions · share public fill · read replies · flat canary clipboard · no accounts
+        Write · share fill · read replies · canary clipboard · no accounts
       </footer>
     </>
   );

@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --board: #6e757c;
-  --sheet: #f6efc8;
-  --sheet-raised: #fffbeb;
-  --ink: #121416;
-  --ink-soft: #2c3136;
-  --ink-mute: #5a6168;
+  --board: #5f666e;
+  --sheet: #f8f1b4;
+  --sheet-raised: #fff6c2;
+  --ink: #0c0e10;
+  --ink-soft: #1f2429;
+  --ink-mute: #4a5158;
   --stamp: #b10f2a;
   --stamp-deep: #8a0c20;
-  --amber: #ef9017;
-  --rule: #c4b98f;
-  --rule-strong: #a89c72;
-  --clip: #5c636b;
+  --amber: #f08a0a;
+  --rule: #b7ab7a;
+  --rule-strong: #8f845c;
+  --clip: #3f454c;
   --focus: #b10f2a;
   --danger: #8a0c20;
   --ok: #2f5d3a;
@@ -61,9 +61,9 @@ a { color: inherit; text-decoration: none; }
 .font-mark {
   font-family: var(--font-mark), Impact, sans-serif;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 0.95em;
+  font-size: 1em;
 }
 .font-sheet {
   font-family: var(--font-sheet), Georgia, serif;
@@ -80,21 +80,21 @@ a { color: inherit; text-decoration: none; }
 .card {
   background: var(--sheet-raised);
   border: 2px solid var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
   border-radius: 2px;
 }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-  border: 2px solid var(--ink); border-radius: 2px; padding: 0.75rem 1.2rem;
-  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.01em; cursor: pointer;
+  border: 2px solid var(--ink); border-radius: 2px; padding: 0.88rem 1.45rem;
+  font-size: 1rem; font-weight: 750; letter-spacing: 0.01em; cursor: pointer;
   font-family: var(--font-sans), system-ui, sans-serif;
   transition: background 120ms ease, color 120ms ease, border-color 120ms ease, transform 80ms ease;
 }
 .btn:active { transform: translateY(1px); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 /* Primary = stamp fill (the one job action) */
-.btn-primary { background: var(--stamp); color: #fffaf2; border-color: var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.btn-primary { background: var(--stamp); color: #fffaf2; border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); min-height: 3rem; }
 .btn-primary:hover:not(:disabled) { background: var(--stamp-deep); }
 /* Secondary = ink outline on sheet (Open fill / Try) */
 .btn-amber, .btn-moss {
@@ -103,13 +103,13 @@ a { color: inherit; text-decoration: none; }
 }
 .btn-amber:hover:not(:disabled), .btn-moss:hover:not(:disabled) { background: #fff3c4; }
 /* Ghost = low priority */
-.btn-ghost { background: transparent; color: var(--ink-soft); border-color: var(--rule-strong); box-shadow: none; }
+.btn-ghost { background: var(--sheet); color: var(--ink-soft); border-color: var(--ink); box-shadow: none; }
 .btn-ghost:hover:not(:disabled) { background: var(--sheet); border-color: var(--ink); color: var(--ink); }
 
 .field {
-  width: 100%; border: 0; border-bottom: 2px solid var(--rule-strong);
+  width: 100%; border: 0; border-bottom: 3px solid var(--rule-strong);
   background: transparent; color: var(--ink);
-  border-radius: 0; padding: 0.85rem 0.1rem; font: inherit;
+  border-radius: 0; padding: 0.95rem 0.1rem; font: inherit;
 }
 .field:focus { outline: none; border-bottom-color: var(--stamp); box-shadow: 0 1px 0 0 var(--stamp); }
 .field-box {
@@ -131,6 +131,7 @@ a { color: inherit; text-decoration: none; }
 
 .letter-sheet, .clip-sheet {
   position: relative;
+  padding-block: 0.35rem;
   background-color: var(--sheet);
   background-image: url("/art/canary-grain.jpg");
   background-size: 360px auto;
@@ -138,7 +139,7 @@ a { color: inherit; text-decoration: none; }
   border: 2px solid var(--ink);
   box-shadow: var(--shadow);
   border-radius: 2px;
-  min-height: min(62vh, 560px);
+  min-height: min(68vh, 620px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -164,10 +165,10 @@ a { color: inherit; text-decoration: none; }
 }
 .letter-question, .sheet-question {
   font-family: var(--font-sheet), Georgia, serif;
-  font-weight: 650;
-  font-size: clamp(2.05rem, 4.6vw, 3rem);
-  line-height: 1.22;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  font-size: clamp(2.25rem, 5vw, 3.35rem);
+  line-height: 1.16;
+  letter-spacing: -0.025em;
   color: var(--ink);
 }
 .letter-hint { font-size: 0.85rem; color: var(--ink-soft); font-weight: 500; }
@@ -176,9 +177,9 @@ a { color: inherit; text-decoration: none; }
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   width: 100%; text-align: left;
   border: 2px solid var(--ink); background: var(--sheet-raised);
-  padding: 1rem 1.1rem; border-radius: 2px; cursor: pointer;
-  font: inherit; color: var(--ink);
-  box-shadow: 2px 2px 0 var(--rule-strong);
+  padding: 1.1rem 1.2rem; border-radius: 2px; cursor: pointer;
+  font: inherit; color: var(--ink); font-weight: 600;
+  box-shadow: 3px 3px 0 var(--ink);
 }
 .choice-chip:hover { border-color: var(--stamp); background: #fff3c4; }
 .choice-chip.is-on {
@@ -195,7 +196,7 @@ a { color: inherit; text-decoration: none; }
 }
 .seal-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
 .seal-dot {
-  width: 10px; height: 10px; border-radius: 50%;
+  width: 12px; height: 12px; border-radius: 50%;
   background: var(--sheet-raised);
   border: 2px solid var(--ink);
 }
@@ -244,24 +245,24 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 4px solid var(--stamp);
   padding: 0.75rem 1rem;
   font-family: var(--font-mono), monospace;
-  font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
-  font-weight: 600;
+  font-size: 0.84rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 700;
 }
 .job-tape span:nth-child(odd) { color: #fff8d6; }
 .job-tape span:nth-child(even) { color: var(--amber); }
 
 .desk-billboard {
   display: grid;
-  grid-template-columns: minmax(300px, 1.2fr) minmax(240px, 0.8fr);
-  gap: 1.5rem;
+  grid-template-columns: minmax(300px, 1.25fr) minmax(220px, 0.75fr);
+  gap: 1.15rem;
   align-items: start;
 }
 .desk-billboard-copy { display: grid; gap: 1.1rem; }
 .desk-billboard h1.billboard-title {
   font-family: var(--font-sheet), Georgia, serif;
-  font-size: clamp(2.75rem, 6.8vw, 4.6rem);
-  line-height: 0.96;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.9rem, 7vw, 4.85rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
   font-weight: 700;
   max-width: 14ch;
   margin: 0.1rem 0 0;
@@ -284,7 +285,7 @@ a { color: inherit; text-decoration: none; }
 .desk-plate {
   margin: 0;
   border: 3px solid var(--ink);
-  box-shadow: 10px 10px 0 var(--stamp);
+  box-shadow: 8px 8px 0 var(--stamp);
   background: var(--sheet-raised);
   overflow: hidden;
 }
@@ -337,12 +338,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 .demo-rail {
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   border: 3px solid var(--ink);
   background: var(--sheet-raised);
-  box-shadow: 8px 8px 0 var(--amber);
-  padding: 1rem 1.15rem;
-  display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center; justify-content: space-between;
+  box-shadow: 6px 6px 0 var(--amber);
+  padding: 0.85rem 1rem;
+  display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;
 }
 .demo-rail p { margin: 0; max-width: 42ch; color: var(--ink-soft); }
 
