@@ -1,6 +1,6 @@
 /* transitions.dev recipes — free set, wired into product UX */
 :root {
-  --badge-blur: 2px;
+  --badge-blur: 0px;
   --badge-close-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --badge-fade-close-dur: 180ms;
   --badge-fade-dur: 400ms;
@@ -12,7 +12,7 @@
   --badge-slide-dur: 260ms;
   --badge-slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --check-blur-dur: 500ms;
-  --check-blur-from: 10px;
+  --check-blur-from: 0px;
   --check-bob-dur: 500ms;
   --check-ease-bob: cubic-bezier(0.34, 1.35, 0.64, 1);
   --check-ease-opacity: cubic-bezier(0.22, 1, 0.36, 1);
@@ -28,7 +28,7 @@
   --pulse-count: 1;
   --pulse-dur: 1000ms;
   --pulse-min: 0.5;
-  --reveal-blur: 2px;
+  --reveal-blur: 0px;
   --reveal-dur: 400ms;
   --reveal-ease: ease-in-out;
   --revert-dur: 280ms;
@@ -38,7 +38,7 @@
   --shake-dur-b: 60ms;
   --shake-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --shake-overshoot: 4px;
-  --stagger-blur: 3px;
+  --stagger-blur: 0px;
   --stagger-distance: 12px;
   --stagger-dur: 500ms;
   --stagger-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -49,7 +49,7 @@
   --tabs-pill-bg: #ffffff;
   --tabs-text-active: #0f0f0f;
   --tabs-text-muted: rgba(15, 15, 15, 0.8);
-  --toast-blur: 2px;
+  --toast-blur: 0px;
   --toast-close: 250ms;
   --toast-distance: 16px;
   --toast-ease: cubic-bezier(0.22, 1, 0.36, 1);
