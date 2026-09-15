@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/SiteHeader";
 import { FormEditor } from "@/components/FormEditor";
 import { getFormById } from "@/lib/forms";
+import { initDb } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -9,6 +10,7 @@ export const runtime = "nodejs";
 type Props = { params: Promise<{ id: string }> };
 
 export default async function FormEditPage({ params }: Props) {
+  await initDb();
   const { id } = await params;
   const form = getFormById(id);
   if (!form) notFound();

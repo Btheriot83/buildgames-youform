@@ -2,7 +2,7 @@
 
 A personal, local-first replacement for the **Youform** core loop: schema-based form editor → conversational public share link → validation → response table → CSV export → optional webhook.
 
-**Stack:** Next.js 15 · TypeScript · SQLite (`better-sqlite3`)
+**Stack:** Next.js 15 · TypeScript · SQLite (`better-sqlite3` locally, `sql.js` on Vercel)
 
 ## Aesthetic
 
@@ -39,7 +39,7 @@ Open [http://localhost:3000](http://localhost:3000). Sample forms labelled `[SAM
 ## Architecture
 
 ```
-src/lib/db.ts          SQLite connection + migrations
+src/lib/db.ts          SQLite connection + migrations (better-sqlite3 / sql.js)
 src/lib/forms.ts       Form / response CRUD, import/export, CSV
 src/lib/validation.ts  Schema + answer validation (Zod)
 src/lib/webhook.ts     Optional POST on submit (degraded if missing/fails)
@@ -84,12 +84,15 @@ Set a webhook URL on a form. On submit we POST JSON:
 
 ## SQLite on Vercel
 
-`better-sqlite3` is native and fits **local / long-running Node** hosting. Vercel’s serverless filesystem is ephemeral — for hosted production prefer:
+**Local / VPS:** prefers native `better-sqlite3` writing to `data/youform.db` (or `DATABASE_PATH`).
 
-1. Run on a VPS/container with a persistent volume, **or**
-2. Point at [Turso](https://turso.tech) / libSQL and swap the client (same SQL shape).
+**Vercel / serverless:** automatically falls back to pure-JS [`sql.js`](https://sql.js.org) when `VERCEL=1` is set, or when `better-sqlite3` fails to load. Data is persisted under `/tmp/ember-forms.db` when writable.
 
-`next build` marks `better-sqlite3` as `serverExternalPackages`.
+> **Demo caveat:** `/tmp` on Vercel is **ephemeral**. Cold starts (and new instances) may reset demo forms/responses. Sample data reseeds automatically. For durable hosted storage, run on a VPS with a volume or swap in [Turso](https://turso.tech) / libSQL (`@libsql/client`).
+
+Force the Vercel path locally: `USE_SQLJS=1 npm run dev`.
+
+`next.config` marks both `better-sqlite3` and `sql.js` as `serverExternalPackages`.
 
 ## Limitations (vs paid Youform)
 

@@ -2,11 +2,13 @@ import { NextResponse } from "next/server";
 import { createForm, listForms, countResponses } from "@/lib/forms";
 import { ensureSampleData } from "@/lib/sample-data";
 import { formMetaSchema, formSchemaSchema } from "@/lib/validation";
+import { initDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  await initDb();
   ensureSampleData();
   const forms = listForms().map((f) => ({
     ...f,
@@ -16,6 +18,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  await initDb();
   try {
     const body = await req.json();
     const meta = formMetaSchema.partial({ slug: true }).parse({
