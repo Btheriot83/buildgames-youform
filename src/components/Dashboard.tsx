@@ -124,9 +124,11 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
                 Try public fill
               </Link>
             )}
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
             <button
               type="button"
-              className="btn btn-ghost"
+              className="text-sm text-[var(--ink-mute)] underline underline-offset-4 hover:text-[var(--ink)]"
               disabled={busy}
               onClick={() => fileRef.current?.click()}
             >

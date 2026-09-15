@@ -29,3 +29,7 @@
 **Visible delta:** Each reply is a tray card with lead answer + key fields; PT timestamps; spreadsheet demoted below; Open public fill on replies page.
 **PR:** pending
 
+### R6 — Visible mistake fixes
+**Visible delta:** Smaller tray stamp + padding so it doesn’t collide with titles/actions; Import demoted from equal CTA to quiet text link (job CTAs unambiguous).
+**PR:** pending
+
