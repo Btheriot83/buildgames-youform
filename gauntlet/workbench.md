@@ -54,3 +54,10 @@ Mobbin MCP returned paid-plan gate (2026-09-14 PT). Bar = live original screensh
 **Built:** Public kicker → “Reply”; AI panel from bordered card → hairline section “From a brief”.
 **Score:** **6.7/10**. Still below 8 by honesty rule; original preferred only on SaaS completeness / AI marketing theater — core letter job competitive.
 **Blind A/B:** Candidate preferred for craft/anti-slop; original for brand familiarity of Typeform-like fill. Forced improvement admitted on correspondence execution.
+
+## Final (Phase B complete)
+**demoUrl:** https://buildgames-youform.vercel.app  
+**Identity locked:** `docs/IDENTITY.md` — Sunlit blotter correspondence  
+**techniquesDone:** [1,2,3,4,5,6,7,8] (Phase A once)  
+**Rounds:** 5/5 under identity. Final honest score **6.7/10**. Never self-scored 8+.
+**Shots:** `r5-intro.png`, `r5-question.png`, `r5-live-desk.png`
