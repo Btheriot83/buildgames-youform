@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import crypto from "crypto";
 import vm from "vm";
 import Module from "module";
 import type { AppDatabase, RunResult, Statement } from "./db-types";
@@ -115,10 +116,12 @@ function loadVendorAsm(filePath: string): (
   const m: { exports: unknown } = { exports: {} };
   const wrapped = Module.wrap(code);
   const compiled = vm.runInThisContext(wrapped, { filename: filePath });
-  const fakeRequire = () => {
-    throw new Error("sql-asm nested require not supported");
+  const fakeRequire = (id: string) => {
+    if (id === "node:fs" || id === "fs") return fs;
+    if (id === "node:crypto" || id === "crypto") return crypto;
+    throw new Error(`sql-asm unexpected require: ${id}`);
   };
-  compiled(m.exports, fakeRequire, m, filePath, path.dirname(filePath));
+  compiled(m.exports, fakeRequire as NodeRequire, m, filePath, path.dirname(filePath));
   const exp = m.exports as
     | ((cfg?: Record<string, unknown>) => Promise<SqlJsStatic>)
     | { default: (cfg?: Record<string, unknown>) => Promise<SqlJsStatic> };
