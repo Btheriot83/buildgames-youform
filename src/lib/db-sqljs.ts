@@ -142,14 +142,6 @@ function candidateWasmPaths(): string[] {
     ),
   ];
 
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const resolved = require.resolve("sql.js/dist/sql-wasm.wasm");
-    paths.unshift(resolved);
-  } catch {
-    // package exports may not expose .wasm — ignore
-  }
-
   return paths;
 }
 
