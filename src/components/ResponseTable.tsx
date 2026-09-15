@@ -86,7 +86,7 @@ export function ResponseTable({ form, initialResponses }: Props) {
                     <p className="font-sheet text-2xl text-[var(--ink)]">
                       {lead ? fmt(r.answers[lead.id]) : "Reply"}
                     </p>
-                    <p className="mt-1 font-mono text-xs uppercase tracking-wider text-[var(--ink-mute)]">
+                    <p className="mt-1 font-mono text-xs uppercase tracking-wider text-[var(--ink-soft)]">
                       {new Date(r.created_at).toLocaleString("en-US", { timeZone: "America/Phoenix" })} PT
                     </p>
                     <dl className="mt-3 grid gap-1 text-sm text-[var(--ink-soft)]">

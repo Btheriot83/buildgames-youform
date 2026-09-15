@@ -138,7 +138,7 @@ a { color: inherit; text-decoration: none; }
   border: 2px solid var(--ink);
   box-shadow: var(--shadow);
   border-radius: 2px;
-  min-height: min(58vh, 520px);
+  min-height: min(62vh, 560px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -195,9 +195,9 @@ a { color: inherit; text-decoration: none; }
 }
 .seal-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
 .seal-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: var(--rule-strong);
-  border: 1px solid var(--ink-mute);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--sheet-raised);
+  border: 2px solid var(--ink);
 }
 .seal-dot.is-lit { background: var(--stamp); border-color: var(--ink); }
 
