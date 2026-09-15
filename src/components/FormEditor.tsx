@@ -160,7 +160,7 @@ export function FormEditor({ form }: Props) {
   }
 
   async function removeForm() {
-    if (!confirm("Delete this form and all responses?")) return;
+    if (!confirm("Delete this form and all replies?")) return;
     const res = await fetch(`/api/forms/${form.id}`, { method: "DELETE" });
     if (res.ok) router.push("/");
     else setMessage({ tone: "error", text: "Could not delete." });
@@ -248,7 +248,7 @@ export function FormEditor({ form }: Props) {
         <div className="flex items-center justify-between gap-3">
           <h2 className="font-letter text-xl">Questions</h2>
           <button type="button" className="btn btn-ghost" onClick={addField}>
-            Add a line
+            Add question
           </button>
         </div>
 
@@ -378,8 +378,11 @@ export function FormEditor({ form }: Props) {
             Loop: write questions → share fill → read replies. Webhook optional.
           </p>
         </div>
-        <div className="card overflow-hidden">
-          <img src="/art/shop-stamp.jpg" alt="" className="mx-auto w-40 p-6" />
+        <div className="card overflow-hidden p-4">
+          <img src="/art/clipboard-hero.jpg" alt="" className="w-full object-cover border-2 border-[var(--ink)]" />
+          <p className="mt-3 text-center font-mono text-[0.65rem] uppercase tracking-wider text-[var(--ink-mute)]">
+            Canary clipboard · flat ink · no glow
+          </p>
         </div>
       </aside>
     </div>

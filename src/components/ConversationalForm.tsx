@@ -302,7 +302,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
                       setDraft(e.target.value);
                       setError(null);
                     }}
-                    placeholder={field.placeholder || "Write your reply…"}
+                    placeholder={field.placeholder || "Type your answer…"}
                     aria-label={field.label}
                     aria-invalid={!!error}
                   />
@@ -400,7 +400,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
                   {index >= fields.length - 1 ? "Stamp & submit" : "Continue"}
                 </button>
               ) : (
-                <span className="letter-hint">Choose a line — it turns the page</span>
+                <span className="letter-hint">Pick one — next question loads</span>
               )}
               {field.type !== "boolean" && field.type !== "select" ? (
                 <span className="letter-hint">
