@@ -1,5 +1,9 @@
 import fs from "fs";
+import path from "path";
+import { createRequire } from "module";
 import type { AppDatabase, RunResult, Statement } from "./db-types";
+
+const nodeRequire = createRequire(path.join(process.cwd(), "package.json"));
 
 type SqlJsDatabase = {
   run(sql: string, params?: unknown[]): void;
@@ -29,7 +33,7 @@ function wrapDatabase(
   const persist = () => {
     if (!persistPath) return;
     try {
-      fs.mkdirSync(require("path").dirname(persistPath), { recursive: true });
+      fs.mkdirSync(path.dirname(persistPath), { recursive: true });
       fs.writeFileSync(persistPath, Buffer.from(raw.export()));
     } catch {
       // Ephemeral FS / cold start — demo data may reset.
@@ -101,18 +105,11 @@ function wrapDatabase(
   };
 }
 
-/**
- * Bundle sql.js asm.js into the server chunk (no wasm, no external package).
- */
 async function initSqlJsEngine(): Promise<SqlJsStatic> {
-  // Vendor at repo root so eslint does not parse the asm blob.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const path = require("path") as typeof import("path");
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const mod = require(path.join(process.cwd(), "vendor", "sql-asm.js"));
-  const initSqlJs = (typeof mod === "function" ? mod : mod.default) as (
-    cfg?: Record<string, unknown>
-  ) => Promise<SqlJsStatic>;
+  const mod = nodeRequire(path.join(process.cwd(), "vendor", "sql-asm.js")) as
+    | ((cfg?: Record<string, unknown>) => Promise<SqlJsStatic>)
+    | { default: (cfg?: Record<string, unknown>) => Promise<SqlJsStatic> };
+  const initSqlJs = typeof mod === "function" ? mod : mod.default;
   if (typeof initSqlJs !== "function") {
     throw new Error("sql-asm.js did not export an initializer function");
   }
