@@ -234,10 +234,11 @@ a { color: inherit; text-decoration: none; }
 .blotter-tape, .job-tape {
   display: flex; gap: 1.25rem; align-items: center; justify-content: center; flex-wrap: wrap;
   background: var(--ink); color: var(--sheet-raised);
-  border-bottom: 3px solid var(--stamp);
-  padding: 0.55rem 1rem;
+  border-bottom: 4px solid var(--stamp);
+  padding: 0.7rem 1rem;
   font-family: var(--font-mono), monospace;
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+  font-weight: 500;
 }
 .job-tape span:nth-child(odd) { color: #fff8d6; }
 .job-tape span:nth-child(even) { color: var(--amber); }

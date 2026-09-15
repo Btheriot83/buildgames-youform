@@ -13,3 +13,7 @@
 **Score:** baseline post-reseed with flat materials.
 **PR:** pending
 
+### R2 — Seed v3 + job tape weight + flat banners
+**Visible delta:** Thicker job tape (Write/Share/Read); desk copy names form builder explicitly; StatusBanner flat (no color-mix wash); seed_v3 forces AZ diesel + Mesa yard demo forms.
+**PR:** pending
+
