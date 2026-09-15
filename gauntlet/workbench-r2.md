@@ -45,3 +45,8 @@
 **Visible delta:** Fill hint “Pick one”; editor “Add question”; aside shows clipboard photo plate (not floating stamp); audit clean of gradients/backdrop-blur/shadow-lg/color-mix.
 **PR:** pending
 
+### R10 — Walkthrough closeout
+**Visible delta:** Footer restates the three-step job; VISIBLE_DELTA_R2.md; status JSON finalized; app ready for ≤90s video (edit → public fill → replies with AZ diesel data).
+**Shots:** capture after deploy smoke.
+**Final:** 10/10 R2 rounds under Canary Clipboard. No reseed mid-R2. Gradients/glass/glow cleared.
+
