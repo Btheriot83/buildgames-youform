@@ -105,9 +105,11 @@ function wrapDatabase(
  * Bundle sql.js asm.js into the server chunk (no wasm, no external package).
  */
 async function initSqlJsEngine(): Promise<SqlJsStatic> {
-  // Relative vendor copy — guaranteed in the serverless bundle.
+  // Vendor at repo root so eslint does not parse the asm blob.
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const mod = require("./vendor/sql-asm.js");
+  const path = require("path") as typeof import("path");
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const mod = require(path.join(process.cwd(), "vendor", "sql-asm.js"));
   const initSqlJs = (typeof mod === "function" ? mod : mod.default) as (
     cfg?: Record<string, unknown>
   ) => Promise<SqlJsStatic>;
