@@ -43,3 +43,9 @@
 - verdict: success-check now fires on real submit-done (not CSS-only); toast on copy if wired. youform.com uses soft confirm — we keep stamp-red check on canary.
 - commit: 06e65fe2351080f210a8f892bddf90fc176b1e0d
 
+## r7 — contrast
+- files: src/app/globals.css
+- shot: gauntlet/shots-r4/r7-contrast-desk.png
+- verdict: Deeper aluminum board + stronger rules; canary pops more. youform.com stays light gray/white — we intentionally diverge on material.
+- commit: 4c10030121881be6de947691895509d8c7d67db7
+
