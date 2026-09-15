@@ -30,3 +30,11 @@ Mobbin MCP returned paid-plan gate (2026-09-14 PT). Bar = live original screensh
 **Biggest gap to fix next:** Desk still admin-list; chrome above question (kicker+seals+bar) still noisy; `[SAMPLE]` voice leak.
 **AI:** Live anthropic draft OK locally (`mode=llm`).
 **Lenny:** DISCOVER/DEFINE/DELIVER written; techniquesDone [1..8].
+
+## Round 2 — Letter tray desk + quieter chrome (Phase B, identity locked)
+**Identity:** Sunlit blotter correspondence (no reseed).
+**Built:** Desk rows → letter-sheet tray cards; strip `[SAMPLE]`; single-line progress+count+seals; drop Correspondence/Qn eyebrows; denser sheet; public header uses `font-mark`.
+**Shots:** `r2-desk.png`, `r2-intro.png`
+**Critic (fresh, screenshots only):** Aesthetic still blotter. Desk now reads as stacked letters — clearer. Intro quieter; title no longer SAMPLE-tagged. vs Youform fill: original still wins full-bleed focus; candidate closer on craft.
+**Score:** **5.8/10**. Original still preferred blind on fill stage.
+**Biggest gap:** Choice chips require extra Continue click (Youform OK is immediate); editor AI panel still a bit “settings card”; question type size could grow.

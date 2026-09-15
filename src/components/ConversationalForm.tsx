@@ -216,38 +216,37 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:py-14" onKeyDown={onKeyDown}>
-      <div className="mb-5 flex items-center justify-between gap-3">
-        <div className="letter-kicker">
+      <div className="mb-4 flex items-center gap-3">
+        <div
+          className="h-[2px] min-w-0 flex-1 overflow-hidden bg-[var(--rule)]"
+          role="progressbar"
+          aria-valuenow={Math.min(100, Math.round(progress))}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Form progress"
+        >
+          <div
+            className="progress-fill h-full bg-[var(--ember)]"
+            style={{ width: `${Math.min(100, progress)}%` }}
+          />
+        </div>
+        <div className="letter-kicker shrink-0 tabular-nums">
           {phase === "done"
             ? "Sealed"
             : phase === "intro"
-              ? "Letter"
-              : `Question ${Math.min(index + 1, fields.length)} of ${fields.length}`}
+              ? `${fields.length}`
+              : `${Math.min(index + 1, fields.length)}/${fields.length}`}
         </div>
-        <div className="seal-row" aria-label={`${stamps} seals earned`}>
+        <div className="seal-row shrink-0" aria-label={`${stamps} seals earned`}>
           {fields.map((_, i) => (
             <span key={i} className={`seal-dot ${i < stamps || phase === "done" ? "is-lit" : ""}`} />
           ))}
         </div>
       </div>
-      <div
-        className="h-[3px] w-full overflow-hidden rounded-full bg-[var(--rule)]"
-        role="progressbar"
-        aria-valuenow={Math.min(100, Math.round(progress))}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label="Form progress"
-      >
-        <div
-          className="progress-fill h-full bg-[var(--ember)]"
-          style={{ width: `${Math.min(100, progress)}%` }}
-        />
-      </div>
 
       {phase === "intro" && (
         <div key={`intro-${animKey}`} className="letter-sheet step-enter mt-6 p-8 sm:p-12">
           <div className={`t-stagger relative z-[1] ${introShown ? "is-shown" : ""}`}>
-            <p className="t-stagger-line t-stagger-line--1 eyebrow">Correspondence</p>
             <h1 className="t-stagger-line t-stagger-line--2 letter-question mt-4">{title}</h1>
             {description ? (
               <p className="t-stagger-line t-stagger-line--3 mt-5 max-w-xl text-[1.05rem] leading-relaxed text-[var(--ink-soft)]">
@@ -276,7 +275,6 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
       {phase === "questions" && field && (
         <div key={`q-${animKey}`} className="letter-sheet step-enter mt-6 p-8 sm:p-12">
           <div className="relative z-[1]">
-            <p className="letter-kicker">Q{index + 1}</p>
             <h2 className="letter-question mt-4">{field.label}</h2>
             <span className="ink-rule" aria-hidden="true" />
             {field.description ? (

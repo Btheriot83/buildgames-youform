@@ -133,7 +133,7 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--rule);
   box-shadow: var(--shadow);
   border-radius: 1px;
-  min-height: min(70vh, 640px);
+  min-height: min(58vh, 520px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,7 +188,7 @@ a { color: inherit; text-decoration: none; }
 }
 .seal-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
 .seal-dot {
-  width: 10px; height: 10px; border-radius: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
   background: var(--rule-strong);
 }
 .seal-dot.is-lit { background: var(--ember); }

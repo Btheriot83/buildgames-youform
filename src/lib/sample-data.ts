@@ -15,7 +15,7 @@ export function ensureSampleData(db?: AppDatabase): void {
 
   const intake = createForm(
     {
-      title: "[SAMPLE] Studio intake",
+      title: "Studio intake",
       description:
         "Sample conversational form — delete anytime. Mimics a client onboarding chat.",
       slug: "sample-studio-intake",
@@ -100,7 +100,7 @@ export function ensureSampleData(db?: AppDatabase): void {
 
   createForm(
     {
-      title: "[SAMPLE] Event RSVP",
+      title: "Event RSVP",
       description: "Short sample RSVP — delete anytime.",
       slug: "sample-event-rsvp",
       schema: {

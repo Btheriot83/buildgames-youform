@@ -10,6 +10,10 @@ export const runtime = "nodejs";
 
 type Props = { params: Promise<{ slug: string }> };
 
+function displayTitle(title: string) {
+  return title.replace(/^\[SAMPLE\]\s*/i, "").trim() || title;
+}
+
 export default async function PublicFormPage({ params }: Props) {
   await initDb();
   ensureSampleData();
@@ -22,13 +26,13 @@ export default async function PublicFormPage({ params }: Props) {
       <div className="shell flex items-center justify-between py-5">
         <Link href="/" className="flex items-center gap-2 opacity-80 hover:opacity-100">
           <img src="/art/ember-mark.svg" alt="" width={28} height={28} />
-          <span className="font-display text-sm tracking-tight">Ember Forms</span>
+          <span className="font-mark text-sm tracking-tight">Ember Forms</span>
         </Link>
-        <span className="eyebrow">Public reply</span>
+        <span className="letter-kicker">Public reply</span>
       </div>
       <ConversationalForm
         slug={form.slug}
-        title={form.title}
+        title={displayTitle(form.title)}
         description={form.description}
         schema={form.schema}
       />
