@@ -11,23 +11,29 @@
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r1-contrast-desk.png, gauntlet/shots-r4/r1-contrast-fill.png
 - verdict: Hotter canary sheet + deeper ink; clearer than washed aluminum, still not youform.com cool-white stage (identity).
-- commit: 63563098505f5e2aa96887b3a8045ab9d5dfadaf
+- commit: d6c3de3b32bed407ff3cd66d8fb8f680ff4e1ce2
 
 ## r2 — fonts
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r2-fonts-fill.png
 - verdict: Heavier/tighter question type approaches youform one-question scale; serif still a Canary tell vs youform sans.
-- commit: 5ede9d460df259ae28230fd589005821ae2f2f73
+- commit: eb715caa931110a205d3735bfa7879d137ed03e3
 
 ## r3 — buttons
 - files: src/app/globals.css
 - shot: gauntlet/shots-r4/r3-buttons-desk.png
 - verdict: Larger primary stamp CTA closer to youform OK hit-target; offset shadow still clipboard, not soft youform pill.
-- commit: fa0147dd588e1b3e124bb8ebfa85926c710dcf9c
+- commit: 5d32efa54b5c0729b47cb5c7fb1b554a7c9adecc
 
 ## r4 — bar gap
 - files: src/app/globals.css, src/components/ConversationalForm.tsx
 - shot: gauntlet/shots-r4/r4-bargap-fill.png
 - verdict: Narrower fill stage + taller sheet mirrors youform focus column; chrome still canary clip, not bare white.
-- commit: 99fbe47fc5174f5670689431a46f9c570457c14f
+- commit: 6b3f36231e73ab70f130d08a353fe29d726fbec6
+
+## r5 — bar gap
+- files: src/components/ConversationalForm.tsx, gauntlet/workbench-r4.md
+- shot: gauntlet/shots-r4/r5-bargap-fill.png, gauntlet/shots-r4/r5-demo-desk.png, gauntlet/shots-r4/r5-bar-home.png
+- verdict: Intro OK CTA closer to youform.com OK affordance; bar A/B captured — youform still cooler/whiter, we keep canary clipboard.
+- commit: c8f8211b08a99499a8d7e6a6163067fb60bd3cd0
 

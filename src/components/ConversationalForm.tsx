@@ -268,7 +268,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
           <div className="relative z-[1] mt-10 flex flex-wrap items-center gap-4">
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary !px-8 !text-lg"
               onClick={() => {
                 setPhase("questions");
                 setAnimKey((k) => k + 1);
