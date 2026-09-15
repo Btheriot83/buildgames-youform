@@ -359,22 +359,23 @@ export function FormEditor({ form }: Props) {
             </ol>
           </div>
         )}
-        <div className="card p-6">
-          <p className="eyebrow">Share</p>
+        <div className="card p-6 sticky top-4">
+          <p className="eyebrow">Share fill link</p>
+          <p className="mt-2 font-sheet text-lg text-[var(--ink)]">Hand this clipboard to respondents</p>
           <p className="mt-2 break-all font-mono text-sm text-[var(--ink-soft)]">{shareUrl}</p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <button type="button" className="btn btn-moss" onClick={copyLink}>
-              {copied ? "Copied" : "Copy link"}
-            </button>
-            <a className="btn btn-ghost" href={`/f/${slug}`} target="_blank" rel="noreferrer">
+            <a className="btn btn-primary" href={`/f/${slug}`} target="_blank" rel="noreferrer">
               Open public fill
             </a>
+            <button type="button" className="btn btn-amber" onClick={copyLink}>
+              {copied ? "Copied" : "Copy link"}
+            </button>
             <a className="btn btn-ghost" href={`/forms/${form.id}/responses`}>
-              Responses
+              Read replies
             </a>
           </div>
           <p className="mt-4 text-sm text-[var(--ink-mute)]">
-            Webhook is optional. If unset or unreachable, responses still save locally.
+            Loop: write questions → share fill → read replies. Webhook optional.
           </p>
         </div>
         <div className="card overflow-hidden">

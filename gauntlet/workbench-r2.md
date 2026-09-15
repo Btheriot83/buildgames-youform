@@ -21,3 +21,7 @@
 **Visible delta:** Wider fill stage (max-w-3xl); “Public fill · one question at a time” eyebrow; thicker flat ink progress bar; larger question type.
 **PR:** pending
 
+### R4 — Editor share rail leads with public fill
+**Visible delta:** Sticky share card; primary CTA “Open public fill”; copy explains hand-the-clipboard; replies link renamed.
+**PR:** pending
+
