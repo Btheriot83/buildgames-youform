@@ -8,6 +8,10 @@ import { StatusBanner } from "./StatusBanner";
 
 type FormRow = FormRecord & { responseCount: number };
 
+function displayTitle(title: string) {
+  return title.replace(/^\[SAMPLE\]\s*/i, "").trim() || title;
+}
+
 export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
   const router = useRouter();
   const [forms, setForms] = useState(initialForms);
@@ -158,32 +162,36 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
               </div>
             </div>
           ) : (
-            <ul className="divide-y divide-[var(--rule)] border border-[var(--rule)] bg-[var(--paper-raised)] shadow-[var(--shadow)]">
+            <ul className="grid gap-3">
               {forms.map((f) => (
-                <li key={f.id} className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="min-w-0">
+                <li
+                  key={f.id}
+                  className="letter-sheet !min-h-0 flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div className="relative z-[1] min-w-0">
                     <Link
                       href={`/forms/${f.id}`}
                       className="font-letter text-xl tracking-tight hover:text-[var(--ember)]"
                     >
-                      {f.title}
+                      {displayTitle(f.title)}
                     </Link>
-                    <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-[var(--ink-mute)]">
-                      <span>/f/{f.slug}</span>
-                      <span>{f.responseCount} response{f.responseCount === 1 ? "" : "s"}</span>
-                      <span>{new Date(f.updated_at).toLocaleString()}</span>
+                    <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-sm text-[var(--ink-mute)]">
+                      <span className="font-mono text-xs">/f/{f.slug}</span>
+                      <span>
+                        {f.responseCount} repl{f.responseCount === 1 ? "y" : "ies"}
+                      </span>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="relative z-[1] flex flex-wrap gap-2">
                     <Link className="btn btn-ghost !py-2" href={`/forms/${f.id}`}>
-                      Edit
+                      Compose
                     </Link>
                     <Link
                       className="btn btn-ghost relative !py-2"
                       href={`/forms/${f.id}/responses`}
                       style={{ position: "relative" }}
                     >
-                      Responses
+                      Replies
                       <span
                         className="t-badge"
                         data-open={f.responseCount > 0 ? "true" : "false"}
@@ -195,7 +203,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
                       </span>
                     </Link>
                     <Link className="btn btn-moss !py-2" href={`/f/${f.slug}`} target="_blank">
-                      Open
+                      Open letter
                     </Link>
                   </div>
                 </li>

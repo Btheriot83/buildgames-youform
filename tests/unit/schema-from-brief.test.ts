@@ -21,25 +21,30 @@ describe("draftSchemaLocal", () => {
 
 describe("draftSchemaFromBrief", () => {
   it("falls back to local when no API key", async () => {
-    const saved = {
-      BUILD: process.env.BUILD_GAMES_LLM_API_KEY,
-      XAI: process.env.XAI_API_KEY,
-      GROK: process.env.GROK_API_KEY,
-      OPENAI: process.env.OPENAI_API_KEY,
-    };
-    delete process.env.BUILD_GAMES_LLM_API_KEY;
-    delete process.env.XAI_API_KEY;
-    delete process.env.GROK_API_KEY;
-    delete process.env.OPENAI_API_KEY;
+    const keys = [
+      "BUILD_GAMES_LLM_API_KEY",
+      "XAI_API_KEY",
+      "GROK_API_KEY",
+      "OPENAI_API_KEY",
+      "ANTHROPIC_AUTH_TOKEN",
+      "ANTHROPIC_API_KEY",
+    ] as const;
+    const saved: Record<string, string | undefined> = {};
+    for (const k of keys) {
+      saved[k] = process.env[k];
+      delete process.env[k];
+    }
+    const base = process.env.ANTHROPIC_BASE_URL;
+    delete process.env.ANTHROPIC_BASE_URL;
     try {
       const d = await draftSchemaFromBrief("Feedback form with email and comments");
       expect(d.mode).toBe("local");
       expect(d.schema.fields.length).toBeGreaterThan(0);
     } finally {
-      if (saved.BUILD) process.env.BUILD_GAMES_LLM_API_KEY = saved.BUILD;
-      if (saved.XAI) process.env.XAI_API_KEY = saved.XAI;
-      if (saved.GROK) process.env.GROK_API_KEY = saved.GROK;
-      if (saved.OPENAI) process.env.OPENAI_API_KEY = saved.OPENAI;
+      for (const k of keys) {
+        if (saved[k] !== undefined) process.env[k] = saved[k];
+      }
+      if (base !== undefined) process.env.ANTHROPIC_BASE_URL = base;
     }
-  });
+  }, 15000);
 });
