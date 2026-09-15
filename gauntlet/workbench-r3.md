@@ -19,3 +19,12 @@ Billboard tighter/heavier; mark slightly quieter; questions clamp up toward youf
 ### R4 — Fill question scale
 Question type ~2.05–3rem for one-at-a-time stage vs bar.
 
+### R5 — Public fill copy vs youform
+Eyebrow “Public fill” + one-line compare cue; keeps job obvious.
+### R6 — Eyebrow color de-stamp
+Mono eyebrows → ink-mute (stamp reserved for CTAs/progress) — less red wash.
+### R7 — Choice chips denser
+Ink border + hard offset; denser padding — closer to youform OK targets.
+### R8 — Editor secondary actions
+Add question / Draft from brief use secondary (amber-class outline) not ghost.
+

@@ -124,8 +124,8 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-mono), monospace;
 }
 .eyebrow {
-  font-family: var(--font-mono), monospace; font-size: 0.7rem;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--stamp);
+  font-family: var(--font-mono), monospace; font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mute);
 }
 .rule { height: 2px; background: var(--rule); border: 0; }
 
@@ -175,9 +175,10 @@ a { color: inherit; text-decoration: none; }
 .choice-chip {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   width: 100%; text-align: left;
-  border: 2px solid var(--rule-strong); background: #fffef6;
-  padding: 0.85rem 1rem; border-radius: 2px; cursor: pointer;
+  border: 2px solid var(--ink); background: var(--sheet-raised);
+  padding: 1rem 1.1rem; border-radius: 2px; cursor: pointer;
   font: inherit; color: var(--ink);
+  box-shadow: 2px 2px 0 var(--rule-strong);
 }
 .choice-chip:hover { border-color: var(--stamp); background: #fff3c4; }
 .choice-chip.is-on {

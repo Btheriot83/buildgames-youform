@@ -198,7 +198,7 @@ export function FormEditor({ form }: Props) {
           <div className="mt-3 flex flex-wrap gap-2">
             <button
               type="button"
-              className="btn btn-moss"
+              className="btn btn-amber"
               onClick={draftFromBrief}
               disabled={drafting}
             >
@@ -247,7 +247,7 @@ export function FormEditor({ form }: Props) {
 
         <div className="flex items-center justify-between gap-3">
           <h2 className="font-letter text-xl">Questions</h2>
-          <button type="button" className="btn btn-ghost" onClick={addField}>
+          <button type="button" className="btn btn-amber" onClick={addField}>
             Add question
           </button>
         </div>
