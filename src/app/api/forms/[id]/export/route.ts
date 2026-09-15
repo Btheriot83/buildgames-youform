@@ -5,6 +5,7 @@ import {
   listResponses,
   responsesToCsv,
 } from "@/lib/forms";
+import { initDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -12,6 +13,7 @@ export const dynamic = "force-dynamic";
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(req: Request, ctx: Ctx) {
+  await initDb();
   const { id } = await ctx.params;
   const form = getFormById(id);
   if (!form) {

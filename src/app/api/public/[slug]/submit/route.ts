@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createResponse, getFormBySlug } from "@/lib/forms";
 import { validateAnswers } from "@/lib/validation";
 import { deliverWebhook } from "@/lib/webhook";
+import { initDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -9,6 +10,7 @@ export const dynamic = "force-dynamic";
 type Ctx = { params: Promise<{ slug: string }> };
 
 export async function POST(req: Request, ctx: Ctx) {
+  await initDb();
   const { slug } = await ctx.params;
   const form = getFormBySlug(slug);
   if (!form) {

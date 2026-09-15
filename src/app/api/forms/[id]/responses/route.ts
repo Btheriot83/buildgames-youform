@@ -4,6 +4,7 @@ import {
   getFormById,
   listResponses,
 } from "@/lib/forms";
+import { initDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,6 +12,7 @@ export const dynamic = "force-dynamic";
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(_req: Request, ctx: Ctx) {
+  await initDb();
   const { id } = await ctx.params;
   const form = getFormById(id);
   if (!form) {
@@ -20,6 +22,7 @@ export async function GET(_req: Request, ctx: Ctx) {
 }
 
 export async function DELETE(req: Request, ctx: Ctx) {
+  await initDb();
   const { id } = await ctx.params;
   if (!getFormById(id)) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });

@@ -1,6 +1,5 @@
 import { randomUUID } from "crypto";
-import type Database from "better-sqlite3";
-import { getDb } from "./db";
+import { getDb, type AppDatabase } from "./db";
 import type {
   FormExportPayload,
   FormRecord,
@@ -49,11 +48,11 @@ function mapResponse(row: ResponseRow): ResponseRecord {
   };
 }
 
-function dbOr(db?: Database.Database) {
+function dbOr(db?: AppDatabase) {
   return db ?? getDb();
 }
 
-export function listForms(db?: Database.Database): FormRecord[] {
+export function listForms(db?: AppDatabase): FormRecord[] {
   const rows = dbOr(db)
     .prepare("SELECT * FROM forms ORDER BY updated_at DESC")
     .all() as FormRow[];
@@ -62,7 +61,7 @@ export function listForms(db?: Database.Database): FormRecord[] {
 
 export function getFormById(
   id: string,
-  db?: Database.Database
+  db?: AppDatabase
 ): FormRecord | null {
   const row = dbOr(db)
     .prepare("SELECT * FROM forms WHERE id = ?")
@@ -72,7 +71,7 @@ export function getFormById(
 
 export function getFormBySlug(
   slug: string,
-  db?: Database.Database
+  db?: AppDatabase
 ): FormRecord | null {
   const row = dbOr(db)
     .prepare("SELECT * FROM forms WHERE slug = ?")
@@ -88,7 +87,7 @@ export function createForm(
     schema?: FormSchema;
     webhook_url?: string | null;
   },
-  db?: Database.Database
+  db?: AppDatabase
 ): FormRecord {
   const title = input.title.trim() || "Untitled form";
   let slug = slugify(input.slug || title);
@@ -145,7 +144,7 @@ export function updateForm(
     schema?: FormSchema;
     webhook_url?: string | null;
   },
-  db?: Database.Database
+  db?: AppDatabase
 ): FormRecord {
   const current = getFormById(id, db);
   if (!current) {
@@ -195,14 +194,14 @@ export function updateForm(
   return getFormById(id, database)!;
 }
 
-export function deleteForm(id: string, db?: Database.Database): boolean {
+export function deleteForm(id: string, db?: AppDatabase): boolean {
   const result = dbOr(db).prepare("DELETE FROM forms WHERE id = ?").run(id);
   return result.changes > 0;
 }
 
 export function listResponses(
   formId: string,
-  db?: Database.Database
+  db?: AppDatabase
 ): ResponseRecord[] {
   const rows = dbOr(db)
     .prepare(
@@ -215,7 +214,7 @@ export function listResponses(
 export function createResponse(
   formId: string,
   answers: Record<string, unknown>,
-  db?: Database.Database
+  db?: AppDatabase
 ): ResponseRecord {
   const id = randomUUID();
   const now = new Date().toISOString();
@@ -233,7 +232,7 @@ export function createResponse(
 
 export function deleteResponse(
   id: string,
-  db?: Database.Database
+  db?: AppDatabase
 ): boolean {
   const result = dbOr(db)
     .prepare("DELETE FROM responses WHERE id = ?")
@@ -243,7 +242,7 @@ export function deleteResponse(
 
 export function countResponses(
   formId: string,
-  db?: Database.Database
+  db?: AppDatabase
 ): number {
   const row = dbOr(db)
     .prepare("SELECT COUNT(*) as c FROM responses WHERE form_id = ?")
@@ -254,7 +253,7 @@ export function countResponses(
 export function exportFormPayload(
   form: FormRecord,
   includeResponses: boolean,
-  db?: Database.Database
+  db?: AppDatabase
 ): FormExportPayload {
   const payload: FormExportPayload = {
     version: 1,
@@ -278,7 +277,7 @@ export function exportFormPayload(
 
 export function importFormPayload(
   payload: unknown,
-  db?: Database.Database
+  db?: AppDatabase
 ): FormRecord {
   const data = payload as FormExportPayload;
   if (!data || data.version !== 1 || !data.form) {
@@ -334,7 +333,7 @@ export function responsesToCsv(
   return lines.join("\n") + "\n";
 }
 
-export function getMeta(key: string, db?: Database.Database): string | null {
+export function getMeta(key: string, db?: AppDatabase): string | null {
   const row = dbOr(db)
     .prepare("SELECT value FROM meta WHERE key = ?")
     .get(key) as { value: string } | undefined;
@@ -344,7 +343,7 @@ export function getMeta(key: string, db?: Database.Database): string | null {
 export function setMeta(
   key: string,
   value: string,
-  db?: Database.Database
+  db?: AppDatabase
 ): void {
   dbOr(db)
     .prepare(

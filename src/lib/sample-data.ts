@@ -1,10 +1,10 @@
 import { createForm, createResponse, getMeta, setMeta, listForms } from "./forms";
-import type Database from "better-sqlite3";
+import type { AppDatabase } from "./db";
 
 const SAMPLE_FLAG = "sample_seeded_v1";
 
 /** Idempotent sample forms — clearly labelled SAMPLE and safe to delete. */
-export function ensureSampleData(db?: Database.Database): void {
+export function ensureSampleData(db?: AppDatabase): void {
   if (getMeta(SAMPLE_FLAG, db) === "1") {
     return;
   }
