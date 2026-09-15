@@ -25,3 +25,9 @@
 - verdict: Larger primary stamp CTA closer to youform OK hit-target; offset shadow still clipboard, not soft youform pill.
 - commit: fa0147dd588e1b3e124bb8ebfa85926c710dcf9c
 
+## r4 — bar gap
+- files: src/app/globals.css, src/components/ConversationalForm.tsx
+- shot: gauntlet/shots-r4/r4-bargap-fill.png
+- verdict: Narrower fill stage + taller sheet mirrors youform focus column; chrome still canary clip, not bare white.
+- commit: 99fbe47fc5174f5670689431a46f9c570457c14f
+
