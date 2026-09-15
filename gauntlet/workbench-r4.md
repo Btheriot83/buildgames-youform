@@ -100,3 +100,9 @@
 - verdict: Mark + desk body toward dream target density; youform marketing type is softer sans — we keep Archivo mark.
 - commit: 3ccb74f5913b0e817ab0f60fd26006e597facc33
 
+## r14 — bar gap
+- files: src/app/globals.css
+- shot: gauntlet/shots-r4/r14-bargap-desk-rail.png
+- verdict: Tighter billboard/demo-rail toward dream target composition; youform home is marketing-hero, ours stays operational desk.
+- commit: fb25fe7f407378ff96f148215858bbbe2069eae0
+
