@@ -55,3 +55,9 @@
 - verdict: Billboard + job tape heavier; closer to youform marketing hierarchy weight, still serif/clipboard voice.
 - commit: 97ac4f8aa65ff4bbe9d3bebc2e1248fb0aa6e242
 
+## r9 — buttons
+- files: src/components/Dashboard.tsx
+- shot: gauntlet/shots-r4/r9-buttons-desk.png
+- verdict: Row actions quieter Edit/Replies, louder Open fill — closer to youform focus on the fill path.
+- commit: 81f4bbd72fe5b42add0a23a6eb99aeeda7fae8ba
+

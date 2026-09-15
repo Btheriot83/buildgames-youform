@@ -243,11 +243,11 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
                     </div>
                   </div>
                   <div className="relative z-[1] flex flex-wrap gap-2">
-                    <Link className="btn btn-ghost !py-2" href={`/forms/${f.id}`}>
-                      Edit questions
+                    <Link className="btn btn-ghost !py-2 !text-sm" href={`/forms/${f.id}`}>
+                      Edit
                     </Link>
                     <Link
-                      className="btn btn-ghost relative !py-2"
+                      className="btn btn-ghost relative !py-2 !text-sm"
                       href={`/forms/${f.id}/responses`}
                       style={{ position: "relative" }}
                     >
@@ -262,8 +262,8 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
                         </span>
                       </span>
                     </Link>
-                    <Link className="btn btn-amber !py-2" href={`/f/${f.slug}`} target="_blank">
-                      Public fill
+                    <Link className="btn btn-amber !py-2 !font-bold" href={`/f/${f.slug}`} target="_blank">
+                      Open fill
                     </Link>
                   </div>
                 </li>
