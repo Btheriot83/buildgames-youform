@@ -185,7 +185,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
           {error && <StatusBanner tone="error">{error}</StatusBanner>}
           {ok && (
             <div
-              className={`t-toast fixed bottom-6 right-6 z-40 rounded-sm border border-[var(--ok)] bg-[color-mix(in_srgb,var(--ok)_12%,white)] px-4 py-2 text-sm text-[var(--ok)] shadow-lg ${toastOpen ? "is-open" : ""}`}
+              className={`t-toast fixed bottom-6 right-6 z-40 rounded-sm border border-[var(--ok)] bg-[var(--sheet-raised)] px-4 py-2 text-sm text-[var(--ok)] border-2 border-[var(--ink)] ${toastOpen ? "is-open" : ""}`}
               role="status"
             >
               {ok}
