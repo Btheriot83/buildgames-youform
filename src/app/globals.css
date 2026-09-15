@@ -311,10 +311,10 @@ a { color: inherit; text-decoration: none; }
 }
 .letter-sheet.letter-tray::after, .clip-sheet.form-tray::after {
   content: "";
-  position: absolute; right: 12px; top: 12px;
-  width: 40px; height: 40px;
+  position: absolute; right: 10px; top: 10px;
+  width: 28px; height: 28px;
   background: url("/art/shop-stamp.jpg") center / contain no-repeat;
-  opacity: 0.9;
+  opacity: 0.85;
   pointer-events: none;
 }
 .letter-sheet.letter-tray::before, .clip-sheet.form-tray::before { display: none; }
@@ -342,3 +342,5 @@ a { color: inherit; text-decoration: none; }
   .desk-materials { position: relative; top: auto; }
   .desk-billboard h1.billboard-title { max-width: 18ch; font-size: clamp(2.2rem, 10vw, 3.2rem); }
 }
+
+.letter-sheet.letter-tray { padding-right: 2.75rem; }
