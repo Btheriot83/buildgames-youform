@@ -177,9 +177,9 @@ a { color: inherit; text-decoration: none; }
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   width: 100%; text-align: left;
   border: 2px solid var(--ink); background: var(--sheet-raised);
-  padding: 1rem 1.1rem; border-radius: 2px; cursor: pointer;
-  font: inherit; color: var(--ink);
-  box-shadow: 2px 2px 0 var(--rule-strong);
+  padding: 1.1rem 1.2rem; border-radius: 2px; cursor: pointer;
+  font: inherit; color: var(--ink); font-weight: 600;
+  box-shadow: 3px 3px 0 var(--ink);
 }
 .choice-chip:hover { border-color: var(--stamp); background: #fff3c4; }
 .choice-chip.is-on {

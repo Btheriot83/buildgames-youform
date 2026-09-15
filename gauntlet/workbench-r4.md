@@ -112,3 +112,9 @@
 - verdict: Thicker stamp progress + darker secondary text; bar A/B — youform progress is minimal; ours stays clipboard hole-punch language.
 - commit: d855cb0cdb50ccdf15c50861b0b06051c80eb5b7
 
+## r16 — buttons
+- files: src/app/globals.css
+- shot: gauntlet/shots-r4/r16-buttons-fill.png
+- verdict: Choice chips heavier hit targets toward dream/youform OK targets; still hard-ink not soft pills.
+- commit: b98ee45cb10d804c9694313a79cf230bb40eb57c
+
