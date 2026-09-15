@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
-import { Fraunces, Literata, Source_Sans_3, IBM_Plex_Mono } from "next/font/google";
+import { Archivo_Black, Source_Serif_4, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import "./transitions.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const archivoBlack = Archivo_Black({
+  variable: "--font-archivo",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
 
-const literata = Literata({
-  variable: "--font-literata",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -29,9 +31,9 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ember Forms — conversational forms for one",
+  title: "Ember Forms — write questions, share fill, read replies",
   description:
-    "A private, local-first Youform replacement: AI schema-from-brief, conversational fill, responses, CSV, webhook.",
+    "Local-first conversational forms: write the questions, share a public fill link, read replies. AI drafts schema from a brief.",
 };
 
 export default function RootLayout({
@@ -40,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fraunces.variable} ${literata.variable} ${sourceSans.variable} ${plexMono.variable} antialiased`}
+        className={`${archivoBlack.variable} ${sourceSerif.variable} ${plexSans.variable} ${plexMono.variable} antialiased`}
       >
         {children}
       </body>

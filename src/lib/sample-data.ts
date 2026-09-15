@@ -1,69 +1,105 @@
-import { createForm, createResponse, getMeta, setMeta, listForms } from "./forms";
+import {
+  createForm,
+  createResponse,
+  deleteForm,
+  getFormBySlug,
+  getMeta,
+  setMeta,
+  listForms,
+} from "./forms";
 import type { AppDatabase } from "./db";
 
-const SAMPLE_FLAG = "sample_seeded_v1";
+const SAMPLE_FLAG = "sample_seeded_v2";
+const LEGACY_SLUGS = [
+  "sample-studio-intake",
+  "sample-event-rsvp",
+  "studio-intake",
+  "event-rsvp",
+];
 
-/** Idempotent sample forms — clearly labelled SAMPLE and safe to delete. */
+function wipeLegacyDemos(db?: AppDatabase): void {
+  for (const slug of LEGACY_SLUGS) {
+    const form = getFormBySlug(slug, db);
+    if (form) deleteForm(form.id, db);
+  }
+  for (const form of listForms(db)) {
+    if (/^\[?SAMPLE\]?/i.test(form.title) || /^(Studio intake|Event RSVP)$/i.test(form.title)) {
+      deleteForm(form.id, db);
+    }
+  }
+}
+
+/** Idempotent demo letters — believable AZ / diesel / ops, never labelled SAMPLE. */
 export function ensureSampleData(db?: AppDatabase): void {
   if (getMeta(SAMPLE_FLAG, db) === "1") {
     return;
   }
+
+  wipeLegacyDemos(db);
+
   if (listForms(db).length > 0) {
     setMeta(SAMPLE_FLAG, "1", db);
     return;
   }
 
-  const intake = createForm(
+  const diesel = createForm(
     {
-      title: "Studio intake",
+      title: "Mobile diesel intake — Valley runs",
       description:
-        "Sample conversational form — delete anytime. Mimics a client onboarding chat.",
-      slug: "sample-studio-intake",
+        "Phoenix · Mesa · Gilbert. Tell us the unit and where it’s sitting. We’ll text when the truck is rolling.",
+      slug: "az-diesel-intake",
       webhook_url: null,
       schema: {
         thankYouMessage:
-          "Got it. We'll read this before our call — thanks for the clarity.",
+          "Got it. Dispatch has your note — expect a text from the Mesa yard within the hour if it’s a roadside.",
         fields: [
           {
-            id: "f_name",
+            id: "f_who",
             type: "text",
-            label: "Who are we speaking with?",
+            label: "Who’s calling this in?",
             required: true,
-            placeholder: "Full name",
+            placeholder: "Name + company",
           },
           {
-            id: "f_email",
-            type: "email",
-            label: "Best email for follow-up?",
+            id: "f_phone",
+            type: "text",
+            label: "Best cell for the tech?",
             required: true,
-            placeholder: "you@studio.example",
+            placeholder: "(480) 555-0142",
           },
           {
-            id: "f_project",
+            id: "f_unit",
+            type: "text",
+            label: "Unit / plate / VIN last 6?",
+            required: true,
+            placeholder: "Unit 17 · AZ 3AB224",
+          },
+          {
+            id: "f_symptom",
             type: "select",
-            label: "What kind of project is this?",
+            label: "What’s the unit doing?",
             required: true,
-            options: ["Brand system", "Product UI", "Editorial site", "Other"],
+            options: [
+              "No-start / won’t crank",
+              "Derate / limp mode",
+              "DEF / aftertreatment",
+              "Air leak / brakes",
+              "Other road call",
+            ],
           },
           {
-            id: "f_budget",
-            type: "number",
-            label: "Rough budget band (USD, thousands)?",
-            description: "A number is fine — e.g. 25 for ~$25k.",
-            required: false,
-            placeholder: "25",
-          },
-          {
-            id: "f_notes",
+            id: "f_where",
             type: "textarea",
-            label: "Anything else we should know?",
-            required: false,
-            placeholder: "Timeline, constraints, references…",
+            label: "Where is it sitting?",
+            description:
+              "Yard address, mile marker, or cross streets — Maricopa County preferred.",
+            required: true,
+            placeholder: "e.g. Love’s #305, I-10 exit 162, west lot · Gilbert",
           },
           {
-            id: "f_ready",
+            id: "f_urgent",
             type: "boolean",
-            label: "Ready to start within 30 days?",
+            label: "Driver waiting on-site right now?",
             required: true,
           },
         ],
@@ -73,60 +109,109 @@ export function ensureSampleData(db?: AppDatabase): void {
   );
 
   createResponse(
-    intake.id,
+    diesel.id,
     {
-      f_name: "Avery Chen",
-      f_email: "avery@example.com",
-      f_project: "Product UI",
-      f_budget: 40,
-      f_notes: "[SAMPLE] Looking for a quiet redesign — no purple gradients.",
-      f_ready: true,
+      f_who: "Rosa Delgado · Southwest Freight",
+      f_phone: "(602) 555-0198",
+      f_unit: "Unit 44 · AZ 8KX119",
+      f_symptom: "Derate / limp mode",
+      f_where: "Walmart DC yard, 6800 W Lower Buckeye Rd, Phoenix — gate 3",
+      f_urgent: true,
     },
     db
   );
 
   createResponse(
-    intake.id,
+    diesel.id,
     {
-      f_name: "Jordan Blake",
-      f_email: "jordan@example.org",
-      f_project: "Editorial site",
-      f_budget: 18,
-      f_notes: "[SAMPLE] Quarterly magazine archive.",
-      f_ready: false,
+      f_who: "Mike Harlan · Harlan Ag",
+      f_phone: "(480) 555-0177",
+      f_unit: "Case IH Magnum · last6 492811",
+      f_symptom: "No-start / won’t crank",
+      f_where: "Field edge, Baseline & Meridian, Mesa — dirt pull-out south of canal",
+      f_urgent: false,
     },
     db
   );
 
-  createForm(
+  createResponse(
+    diesel.id,
     {
-      title: "Event RSVP",
-      description: "Short sample RSVP — delete anytime.",
-      slug: "sample-event-rsvp",
+      f_who: "Tasha Nguyen · Desert Linehaul",
+      f_phone: "(623) 555-0133",
+      f_unit: "Peterbilt 579 · AZ 2MP441",
+      f_symptom: "DEF / aftertreatment",
+      f_where: "Pilot Flying J, I-17 exit 215, northbound Phoenix",
+      f_urgent: true,
+    },
+    db
+  );
+
+  const yard = createForm(
+    {
+      title: "Saturday yard walk — Mesa shop",
+      description:
+        "Optional walk-through for fleet managers. Coffee at 8:00a, boots on by 8:20.",
+      slug: "mesa-yard-walk",
       schema: {
-        thankYouMessage: "You're on the list. See you there.",
+        thankYouMessage: "You’re on the list. Gate code texts Friday afternoon.",
         fields: [
           {
             id: "f_guest",
             type: "text",
-            label: "Name on the guest list?",
+            label: "Name on the gate list?",
             required: true,
+            placeholder: "First and last",
+          },
+          {
+            id: "f_fleet",
+            type: "text",
+            label: "Fleet or shop you represent?",
+            required: true,
+            placeholder: "e.g. Copper State Logistics",
           },
           {
             id: "f_plus",
             type: "boolean",
-            label: "Bringing a plus-one?",
+            label: "Bringing a second person?",
             required: true,
           },
           {
-            id: "f_diet",
+            id: "f_focus",
             type: "select",
-            label: "Meal preference?",
+            label: "What do you want to see first?",
             required: true,
-            options: ["Omnivore", "Vegetarian", "Vegan", "Other"],
+            options: [
+              "Mobile service bays",
+              "Parts cage / common fails",
+              "Aftertreatment bench",
+              "Just coffee & intros",
+            ],
           },
         ],
       },
+    },
+    db
+  );
+
+  createResponse(
+    yard.id,
+    {
+      f_guest: "Elena Ortiz",
+      f_fleet: "Sun Corridor Carriers",
+      f_plus: true,
+      f_focus: "Aftertreatment bench",
+    },
+    db
+  );
+
+  createResponse(
+    yard.id,
+    {
+      f_guest: "Drew Patel",
+      f_fleet: "Patel Ready-Mix (ops)",
+      f_plus: false,
+      f_focus: "Mobile service bays",
     },
     db
   );

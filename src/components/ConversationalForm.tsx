@@ -241,7 +241,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
         </div>
         <div className="letter-kicker shrink-0 tabular-nums">
           {phase === "done"
-            ? "Sealed"
+            ? "Done"
             : phase === "intro"
               ? `${fields.length}`
               : `${Math.min(index + 1, fields.length)}/${fields.length}`}
@@ -272,7 +272,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
                 setAnimKey((k) => k + 1);
               }}
             >
-              Open the letter
+              Start answering
             </button>
             <span className="letter-hint">
               {fields.length} question{fields.length === 1 ? "" : "s"} · Enter advances
@@ -396,7 +396,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
               </button>
               {field.type !== "boolean" && field.type !== "select" ? (
                 <button type="button" className="btn btn-primary" onClick={goNext}>
-                  {index >= fields.length - 1 ? "Press the seal" : "Continue"}
+                  {index >= fields.length - 1 ? "Stamp & submit" : "Continue"}
                 </button>
               ) : (
                 <span className="letter-hint">Choose a line — it turns the page</span>
@@ -414,7 +414,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
       {phase === "submitting" && (
         <div className="letter-sheet step-enter mt-6 p-10 text-center">
           <p className="eyebrow relative z-[1]">Sending</p>
-          <p className="letter-question relative z-[1] mt-4 text-2xl">Sealing your reply…</p>
+          <p className="letter-question relative z-[1] mt-4 text-2xl">Stamping your reply…</p>
         </div>
       )}
 
@@ -422,14 +422,14 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
         <div key={`done-${animKey}`} className="letter-sheet step-enter mt-6 p-10 text-center">
           <div className="relative z-[1]">
             <img
-              src="/art/wax-seal.png"
+              src="/art/shop-stamp.jpg"
               alt=""
               width={88}
               height={88}
               className="seal-press mx-auto rounded-full shadow-md"
               data-state={checkIn ? "in" : "out"}
             />
-            <h2 className="letter-question mt-6 text-3xl">Sealed.</h2>
+            <h2 className="letter-question mt-6 text-3xl">Stamped.</h2>
             <p className="mx-auto mt-4 max-w-md text-[var(--ink-soft)]">{thankYou}</p>
           </div>
         </div>

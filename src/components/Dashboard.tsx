@@ -22,6 +22,8 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
   const [toastOpen, setToastOpen] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
+  const demo = forms.find((f) => f.slug === "az-diesel-intake") || forms[0];
+
   useEffect(() => {
     setForms(initialForms);
     setRevealed(false);
@@ -50,7 +52,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
       const res = await fetch("/api/forms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: "Untitled form" }),
+        body: JSON.stringify({ title: "New intake form" }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -96,22 +98,32 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
       <div className="desk-billboard">
         <div className="desk-billboard-copy">
           <div>
-            <p className="eyebrow">Correspondence desk</p>
+            <p className="eyebrow">Form builder desk</p>
             <h1 className="billboard-title">
-              A letter.
+              Write questions.
               <br />
-              One question
+              Share the fill.
               <br />
-              at a time.
+              Read replies.
             </h1>
             <p className="mt-4 max-w-xl text-lg text-[var(--ink-soft)]">
-              Draft questions from a brief. Share the link. Read the replies on this blotter — not a survey wizard.
+              Build a conversational intake on a canary clipboard. One question at a time for the public link — replies land back on this desk.
             </p>
+            <div className="job-loop mt-4" aria-label="Product loop">
+              <span>Write</span>
+              <span>Share fill</span>
+              <span>Read replies</span>
+            </div>
           </div>
           <div className="flex flex-wrap gap-2">
             <button type="button" className="btn btn-primary" onClick={createForm} disabled={busy}>
-              New letter
+              Write questions
             </button>
+            {demo && (
+              <Link className="btn btn-amber" href={`/f/${demo.slug}`} target="_blank">
+                Try public fill
+              </Link>
+            )}
             <button
               type="button"
               className="btn btn-ghost"
@@ -135,15 +147,38 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
         </div>
         <aside className="desk-materials" aria-hidden>
           <figure className="desk-plate">
-            <img src="/art/empty-desk.png" alt="" />
-            <figcaption>Cream blotter · north window · iron-gall</figcaption>
+            <img src="/art/clipboard-hero.jpg" alt="" />
+            <figcaption>Aluminum clip · canary sheet · shop stamp</figcaption>
           </figure>
           <div className="seal-plate">
-            <img src="/art/wax-seal.png" alt="" />
-            <p>Terracotta wax · seal presses on done</p>
+            <img src="/art/shop-stamp.jpg" alt="" />
+            <p>Stamp presses when they finish</p>
           </div>
         </aside>
       </div>
+
+      {demo && (
+        <div className="demo-rail">
+          <div>
+            <p className="eyebrow">First-run demo</p>
+            <p className="mt-1 font-sheet text-xl text-[var(--ink)]">{displayTitle(demo.title)}</p>
+            <p>
+              Open the public fill, answer like a driver on the roadside, then check replies on the desk.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link className="btn btn-primary" href={`/f/${demo.slug}`} target="_blank">
+              Open public fill
+            </Link>
+            <Link className="btn btn-ghost" href={`/forms/${demo.id}`}>
+              Edit questions
+            </Link>
+            <Link className="btn btn-ghost" href={`/forms/${demo.id}/responses`}>
+              Read replies
+            </Link>
+          </div>
+        </div>
+      )}
 
       {(error || ok) && (
         <div className="mt-6">
@@ -162,18 +197,20 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
       <div className={`t-skel mt-10 ${revealed ? "is-revealed" : ""}`} data-state={revealed ? "ready" : "loading"}>
         <div className="t-skel-skeleton is-pulsing space-y-3" aria-hidden={!revealed}>
           {[0, 1, 2].map((i) => (
-            <div key={i} className="h-16 rounded-sm border border-[var(--rule)] bg-[var(--paper-raised)]" />
+            <div key={i} className="h-16 rounded-sm border border-[var(--rule)] bg-[var(--sheet-raised)]" />
           ))}
         </div>
         <div className="t-skel-content">
           {forms.length === 0 ? (
             <div className="card overflow-hidden text-center">
-              <img src="/art/empty-desk.png" alt="" className="mx-auto max-h-56 w-full object-cover" />
+              <img src="/art/clipboard-hero.jpg" alt="" className="mx-auto max-h-56 w-full object-cover" />
               <div className="p-8">
-                <p className="font-letter text-2xl">Nothing on the blotter yet</p>
-                <p className="mt-2 text-sm text-[var(--ink-mute)]">Begin blank, or open a letter and let the brief draft the questions.</p>
+                <p className="font-sheet text-2xl">Clipboard is empty</p>
+                <p className="mt-2 text-sm text-[var(--ink-mute)]">
+                  Write the first questions, or draft them from a plain-English brief.
+                </p>
                 <button type="button" className="btn btn-primary mt-6" onClick={createForm} disabled={busy}>
-                  Write the first letter
+                  Write questions
                 </button>
               </div>
             </div>
@@ -184,10 +221,10 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
                   key={f.id}
                   className="letter-sheet letter-tray !min-h-0 flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between"
                 >
-                  <div className="relative z-[1] min-w-0">
+                  <div className="relative z-[1] min-w-0 pr-10">
                     <Link
                       href={`/forms/${f.id}`}
-                      className="font-letter text-xl tracking-tight hover:text-[var(--ember)]"
+                      className="font-sheet text-xl tracking-tight hover:text-[var(--stamp)]"
                     >
                       {displayTitle(f.title)}
                     </Link>
@@ -200,7 +237,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
                   </div>
                   <div className="relative z-[1] flex flex-wrap gap-2">
                     <Link className="btn btn-ghost !py-2" href={`/forms/${f.id}`}>
-                      Compose
+                      Edit questions
                     </Link>
                     <Link
                       className="btn btn-ghost relative !py-2"
@@ -218,8 +255,8 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
                         </span>
                       </span>
                     </Link>
-                    <Link className="btn btn-moss !py-2" href={`/f/${f.slug}`} target="_blank">
-                      Open letter
+                    <Link className="btn btn-amber !py-2" href={`/f/${f.slug}`} target="_blank">
+                      Public fill
                     </Link>
                   </div>
                 </li>

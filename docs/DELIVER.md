@@ -1,41 +1,26 @@
-# Deliver — Ember Forms (subtractive + hand craft)
+# DELIVER — Ember Forms (RESEED 2026-09-14)
 
-## Cuts (Tech 6)
-| Cut | Why |
-| --- | --- |
-| Header `backdrop-blur` glass | ANTI_SLOP glassmorphism tell |
-| Numbered question tab strip + sliding pill | Chrome fighting the letter; seals + thin progress enough |
-| Radial ember/moss glow blobs on body | Decorative mesh = empty illustration tell |
-| Native `<select>` on public fill | Replaced with letter choice chips |
-| Loud full-opacity paper texture tile | Softened with paper wash overlay |
-| “private · local · conversational” eyebrow spam | Replaced with hand line; less product-ad voice |
-| Dual marketing CTAs / FAQ / fake stats | Never added — stay cut |
-| Field UUID noise in editor list | Show `#n` only |
+## Technique 6 — Cuts
+- Removed blotter tape / letter / wax-seal metaphor from chrome
+- Demoted Import vs primary “Write questions”
+- Dropped Fraunces + Literata pairing
+- Tray no longer uses wax-seal corner; uses shop stamp
 
-## AI tells removed (Tech 7)
-- Fraunces-everywhere → Fraunces **mark only**; Literata for letter; Source Sans UI
-- No indigo/violet CTAs; ember `#b84322` outside 200–290° AI band
-- No gradient-clipped headlines, no glow buttons, no 3-card icon row
-- Honest degraded pill when LLM key fails (no fake “AI magic” copy)
+## Technique 7 — Anti-slop
+- No vibe purple / glass / glow / Inter-Geist / Space Grotesk
+- No fake stats / 3 identical icon cards / headline badge pill
+- Archivo Black mark-only; Source Serif for sheet titles; Plex Sans UI
+- Stamp `#b10f2a` + amber `#ef9017` outside 200–290° AI band
 
-## Motion craft (Tech 5)
-Beyond transitions.dev recipes already present:
-- `letter-turn` — perspective page-turn on question sheet
-- `seal-press` — wax seal settle on done
-- `ink-underline` — short ember rule under each question
-- Choice chips with keyboard 1–N / Y·N (correspondence, not wizard)
+## Technique 8 — Hand copy (before → after)
+| Spot | Before | After |
+| --- | --- | --- |
+| H1 | A letter. One question at a time. | Write questions. Share the fill. Read replies. |
+| Primary CTA | New letter | Write questions |
+| Public start | Open the letter | Start answering |
+| Done | Sealed. | Stamped. |
+| Editor H1 | Compose the letter | Write the questions |
+| Empty | Nothing on the blotter yet | Clipboard is empty |
 
-## Hand-rewritten copy (Tech 8)
-| Before | After |
-| --- | --- |
-| Your forms | Correspondence desk |
-| Schema in, conversation out… | One letter at a time. Draft the questions from a brief, share the link, read the replies. |
-| New form | New letter |
-| Start a form / Desk is clear | Write the first letter / Nothing on the blotter yet |
-| private · local · conversational | letters, not surveys |
-| Edit form / Save form / Add question | Compose the letter / Save letter / Add a line |
-| Begin letter / OK / Seal & send | Open the letter / Continue / Press the seal |
-| Describe the form in plain English… | Tell us what you need to ask. We draft the questions; you keep the pen. |
-
-## Techniques done
-`[1,2,3,4,5,6,7,8]` — see also `docs/DISCOVER.md`, this file, `docs/DEFINE.md`.
+## Demo data
+AZ diesel intake + Mesa yard walk — real-looking Valley ops, no SAMPLE tags.

@@ -7,27 +7,27 @@ export function SiteHeader({
 }) {
   return (
     <>
-      <div className="blotter-tape" aria-hidden>
-        <span>Sunlit blotter</span>
-        <span>Iron-gall ink</span>
-        <span>Wax seal</span>
-        <span>One letter at a time</span>
+      <div className="job-tape" aria-hidden>
+        <span>1 · Write questions</span>
+        <span>2 · Share fill link</span>
+        <span>3 · Read replies</span>
+        <span>Canary clipboard</span>
       </div>
-      <header className="border-b-2 border-[var(--ink)] bg-[var(--paper-raised)]">
-        <div className="shell flex items-center justify-between gap-4 py-4">
+      <header className="border-b-[3px] border-[var(--ink)] bg-[var(--sheet-raised)]">
+        <div className="shell flex items-center justify-between gap-4 py-3.5">
           <Link href="/" className="flex items-center gap-3 group">
             <img
-              src="/art/ember-mark.svg"
+              src="/art/shop-stamp.jpg"
               alt=""
-              width={56}
-              height={56}
-              className="site-mark-lg"
+              width={52}
+              height={52}
+              className="site-mark-lg object-cover"
             />
             <div>
-              <div className="font-mark text-2xl leading-none tracking-tight group-hover:text-[var(--ember)] transition-colors">
+              <div className="font-mark text-xl leading-none tracking-tight group-hover:text-[var(--stamp)] transition-colors">
                 Ember Forms
               </div>
-              <div className="eyebrow mt-1.5 !text-[var(--ink-mute)]">letters, not surveys</div>
+              <div className="eyebrow mt-1.5 !text-[var(--ink-mute)]">intake clipboard · not a survey wizard</div>
             </div>
           </Link>
           {trail && trail.length > 0 && (

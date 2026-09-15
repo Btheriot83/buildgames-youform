@@ -89,7 +89,7 @@ export function createForm(
   },
   db?: AppDatabase
 ): FormRecord {
-  const title = input.title.trim() || "Untitled form";
+  const title = input.title.trim() || "New intake form";
   let slug = slugify(input.slug || title);
   const schema = formSchemaSchema.parse(
     input.schema ?? {
@@ -102,7 +102,7 @@ export function createForm(
           placeholder: "Your name",
         },
       ],
-      thankYouMessage: "Thanks — your answers are in.",
+      thankYouMessage: "Thanks — your answers are on the clipboard.",
     }
   );
 

@@ -23,7 +23,7 @@ export default async function HomePage() {
       </main>
       <footer className="shell pb-10 pt-4 text-sm text-[var(--ink-mute)]">
         <hr className="rule mb-6" />
-        Single desk · replies stay on this machine · no accounts
+        One clipboard desk · replies stay on this machine · no accounts
       </footer>
     </>
   );

@@ -1,59 +1,60 @@
-# IDENTITY — Ember Forms (LOCKED)
+# IDENTITY — Ember Forms (LOCKED · RESEEDED 2026-09-14)
 
-**Phase A complete. Do not re-seed or change aesthetic in Phase B.**
+**RESEEDED 2026-09-14** — prior identity “Sunlit blotter correspondence” retired. Phase A re-run (Lenny 1–8). Do not reseed again in R2 gauntlet unless Brandon orders.
 
 ## Aesthetic name
-**Sunlit blotter correspondence**
+**Canary Clipboard**
 
 ## Feel statement
-Late-morning desk by a north window. Cream blotter warm under the wrist. Iron-gall ink nearly dry. Terracotta wax cooling on the sill. Questions arrive one at a time like lines in a letter to someone you respect — not a wizard, not a chat bubble. Finish → seal presses with quiet certainty.
+Bay-light aluminum clipboard. Canary triplicate sheet under a steel clip. Stamp-pad red on the SAVE box. You write the questions on the sheet, hand the public link to the driver, and read replies as stacked filled forms — not a letter, not a wizard.
 
 ## Palette (locked)
 | Token | Hex | Role |
 | --- | --- | --- |
-| paper | `#efe6d8` | Desk ground |
-| paper-raised | `#fffaf2` | Letter sheet |
-| ink | `#1c1612` | Primary text |
-| ink-soft | `#4a4038` | Secondary |
-| ink-mute | `#857566` | Meta |
-| ember | `#b84322` | Wax / CTA / focus (outside AI 200–290° band) |
-| moss | `#556342` | Secondary action |
-| rule | `#d9cbb8` | Hairlines |
+| board | `#9aa1a8` | Aluminum ground wash |
+| sheet | `#f3ebc5` | Canary form sheet |
+| sheet-raised | `#fff8d6` | Active field / raised card |
+| ink | `#1a1c1e` | Primary text |
+| ink-soft | `#3d4248` | Secondary |
+| ink-mute | `#6b727a` | Meta / rules |
+| stamp | `#b10f2a` | Primary CTA / focus (seed `#b10f2a`) |
+| amber | `#ef9017` | Secondary accent / clip glint (seed `#ef9017`) |
+| rule | `#cfc6a0` | Form rules |
+| clip | `#5c636b` | Binder clip / chrome |
 
 ## Type (locked)
-- **Mark only:** Fraunces (`font-mark`) — product name in header
-- **Letter body / questions:** Literata (`font-letter` / `font-display`)
-- **UI chrome:** Source Sans 3
-- **Meta:** IBM Plex Mono eyebrows
+- **Mark only:** Archivo Black (`font-mark`) — product wordmark
+- **Sheet titles / questions:** Source Serif 4 (`font-sheet`) — form headers, not page-default
+- **UI / body:** IBM Plex Sans (`font-sans`)
+- **Field meta / eyebrows:** IBM Plex Mono (`font-mono`)
 
 ## Materials
-- Soft paper-fiber photo underlay (washed, never full-opacity tile scream)
-- Letter sheet with inner hairline frame
-- Photoreal wax seal + empty-desk still (Higgsfield assets in `public/art/`)
-- Underline ink fields on public fill; boxed fields in editor
+- Photoreal aluminum clipboard + binder clip (`public/art/clipboard-hero.png`)
+- Canary paper grain underlay (`public/art/canary-grain.png`)
+- Rubber shop stamp mark (`public/art/shop-stamp.png`)
+- Ruled field lines; clip bar at top of public fill stage
 
 ## Motion rules (locked language)
-- `letter-turn` page settle on question change
-- `seal-press` on done
-- `ink-underline` under each question
-- Thin progress + seal dots — no numbered tab chrome
-- transitions.dev recipes only as helpers, not a new motion identity
+- `clip-snap` — clip depression on save / seal submit
+- `sheet-slide` — question advance (horizontal slip under clip)
+- `stamp-thud` — done state stamp
+- Thin progress as hole-punched dots under the clip — no wizard tabs
 
 ## Copy voice (locked)
-Epistolary, concrete, no SaaS theater. Prefer: letter, blotter, seal, brief, reply. Avoid: unlimited, AI-powered, 10K+, Get started dual CTAs, “modern/clean.”
+Shop-intake English. Prefer: clipboard, questions, share link, replies, intake, stamp. Avoid: letter, blotter, wax, unlimited, AI-powered, 10K+, dual Get started, “modern/clean.”
 
-## Core job (one thing)
-Conversational form fill as correspondence + AI that drafts field schema from a plain-English brief.
+## Core job (one thing · must be ≤3s obvious)
+**Write questions → public fill → read responses.** AI drafts field schema from a plain-English brief.
 
-## What Phase B will NOT change
+## What R2 gauntlet will NOT change
 - Seed / aesthetic name / palette / type pairing
 - Whole image system regeneration
 - Wholesale motion language replacement
-- Product rename away from Ember Forms / correspondence metaphor
+- Return to blotter / letter metaphor
 
-## Phase B may change
+## What R2 may change
 - Execution density, hierarchy, empty states
-- Critic-named chrome cuts (Tech 6)
-- Residual AI-tell kills (Tech 7)
-- Light copy tighten when critic names a gap (Tech 8)
-- AI draft quality / editor UX under same identity
+- Critic-named chrome cuts
+- Residual AI-tell kills
+- Light copy tighten
+- Seed/demo data quality under same identity
