@@ -15,8 +15,6 @@ const LEGACY_SLUGS = [
   "sample-event-rsvp",
   "studio-intake",
   "event-rsvp",
-  "az-diesel-intake",
-  "mesa-yard-walk",
 ];
 
 function wipeLegacyDemos(db?: AppDatabase): void {
