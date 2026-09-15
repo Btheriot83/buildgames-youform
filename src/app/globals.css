@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  /* Ember Ledger — warm correspondence desk (seed-derived; no purple) */
+  --paper: #f2ebe1;
+  --paper-raised: #fff9f2;
+  --ink: #1a1512;
+  --ink-soft: #4a4038;
+  --ink-mute: #8a7a6a;
+  --ember: #c24a28;
+  --ember-deep: #9a3518;
+  --moss: #5c6b45;
+  --rule: #ddd0c0;
+  --rule-strong: #cbbba8;
+  --focus: #c24a28;
+  --danger: #8b1e1e;
+  --ok: #3d5c34;
+  --shadow: 0 1px 0 rgba(26, 21, 18, 0.04), 0 12px 40px rgba(26, 21, 18, 0.06);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mute: var(--ink-mute);
+  --color-ember: var(--ember);
+  --color-ember-deep: var(--ember-deep);
+  --color-moss: var(--moss);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-source);
+  --font-mono: var(--font-plex);
+}
+
+* { box-sizing: border-box; }
+html { color-scheme: light; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--paper);
+  background-image:
+    url("/art/paper-texture.svg"),
+    radial-gradient(1200px 600px at 10% -10%, rgba(194, 74, 40, 0.07), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(92, 107, 69, 0.06), transparent 50%);
+  background-blend-mode: multiply, normal, normal;
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(194, 74, 40, 0.2); color: var(--ink); }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+.font-display { font-family: var(--font-serif), Georgia, serif; font-optical-sizing: auto; font-weight: 550; font-variation-settings: "SOFT" 40, "WONK" 0.4; }
+.font-mono { font-family: var(--font-mono), ui-monospace, monospace; }
+.shell { width: min(1080px, calc(100% - 2.5rem)); margin-inline: auto; }
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+  border-radius: 2px;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  border: 1px solid transparent; border-radius: 2px; padding: 0.65rem 1.1rem;
+  font-size: 0.925rem; font-weight: 600; letter-spacing: 0.01em; cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 120ms ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+.btn-primary { background: var(--ember); color: #fff9f2; }
+.btn-primary:hover:not(:disabled) { background: var(--ember-deep); }
+.btn-ghost { background: transparent; color: var(--ink-soft); border-color: var(--rule-strong); }
+.btn-ghost:hover:not(:disabled) { background: rgba(26, 21, 18, 0.04); }
+.btn-moss { background: var(--moss); color: #fff9f2; }
+.btn-moss:hover:not(:disabled) { background: #4a5836; }
+
+.field {
+  width: 100%; border: 1px solid var(--rule-strong); background: #fffdf9; color: var(--ink);
+  border-radius: 2px; padding: 0.75rem 0.9rem; font: inherit;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.field:focus { outline: none; border-color: var(--ember); box-shadow: 0 0 0 3px rgba(194, 74, 40, 0.15); }
+.field-error { border-color: var(--danger); }
+.label {
+  display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 0.4rem;
+}
+.eyebrow {
+  font-family: var(--font-mono), monospace; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ember);
+}
+.rule { height: 1px; background: var(--rule); border: 0; }
+
+@keyframes step-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ink-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes ember-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(194, 74, 40, 0.35); }
+  50% { box-shadow: 0 0 0 10px rgba(194, 74, 40, 0); }
+}
+.step-enter { animation: step-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.progress-fill { transform-origin: left center; transition: width 420ms cubic-bezier(0.22, 1, 0.36, 1); }
+.ember-dot { animation: ember-pulse 2.4s ease-in-out infinite; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}

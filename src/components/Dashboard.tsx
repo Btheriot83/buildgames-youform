@@ -1,0 +1,157 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import type { FormRecord } from "@/lib/types";
+import { StatusBanner } from "./StatusBanner";
+
+type FormRow = FormRecord & { responseCount: number };
+
+export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
+  const router = useRouter();
+  const [forms, setForms] = useState(initialForms);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [ok, setOk] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setForms(initialForms);
+  }, [initialForms]);
+
+  async function createForm() {
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/forms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: "Untitled form" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Could not create form");
+        return;
+      }
+      router.push(`/forms/${data.form.id}`);
+    } catch {
+      setError("Network error creating form.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function onImport(file: File) {
+    setBusy(true);
+    setError(null);
+    setOk(null);
+    try {
+      const text = await file.text();
+      const json = JSON.parse(text);
+      const res = await fetch("/api/forms/import", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(json),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Import failed");
+        return;
+      }
+      setOk(`Imported “${data.form.title}”.`);
+      router.refresh();
+    } catch {
+      setError("Import needs a valid Ember Forms JSON export.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="eyebrow">Desk</p>
+          <h1 className="font-display mt-2 text-4xl tracking-tight sm:text-5xl">
+            Your forms
+          </h1>
+          <p className="mt-3 max-w-xl text-[var(--ink-soft)]">
+            Schema in, conversation out. Share a link, collect answers, export CSV.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" className="btn btn-primary" onClick={createForm} disabled={busy}>
+            New form
+          </button>
+          <button
+            type="button"
+            className="btn btn-ghost"
+            disabled={busy}
+            onClick={() => fileRef.current?.click()}
+          >
+            Import JSON
+          </button>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="application/json,.json"
+            className="sr-only"
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) void onImport(f);
+              e.target.value = "";
+            }}
+          />
+        </div>
+      </div>
+
+      {(error || ok) && (
+        <div className="mt-6">
+          {error && <StatusBanner tone="error">{error}</StatusBanner>}
+          {ok && <StatusBanner tone="ok">{ok}</StatusBanner>}
+        </div>
+      )}
+
+      {forms.length === 0 ? (
+        <div className="card mt-10 overflow-hidden p-8 text-center">
+          <img src="/art/empty-desk.svg" alt="" className="mx-auto max-w-sm" />
+          <button type="button" className="btn btn-primary mt-6" onClick={createForm} disabled={busy}>
+            Start a form
+          </button>
+        </div>
+      ) : (
+        <ul className="mt-10 divide-y divide-[var(--rule)] border border-[var(--rule)] bg-[var(--paper-raised)] shadow-[var(--shadow)]">
+          {forms.map((f) => (
+            <li key={f.id} className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <Link
+                  href={`/forms/${f.id}`}
+                  className="font-display text-xl tracking-tight hover:text-[var(--ember)]"
+                >
+                  {f.title}
+                </Link>
+                <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-[var(--ink-mute)]">
+                  <span>/f/{f.slug}</span>
+                  <span>{f.responseCount} response{f.responseCount === 1 ? "" : "s"}</span>
+                  <span>{new Date(f.updated_at).toLocaleString()}</span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Link className="btn btn-ghost !py-2" href={`/forms/${f.id}`}>
+                  Edit
+                </Link>
+                <Link className="btn btn-ghost !py-2" href={`/forms/${f.id}/responses`}>
+                  Responses
+                </Link>
+                <Link className="btn btn-moss !py-2" href={`/f/${f.slug}`} target="_blank">
+                  Open
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
