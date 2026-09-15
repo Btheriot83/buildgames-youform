@@ -292,6 +292,7 @@ export function FormEditor({ form }: Props) {
                   <label className="flex items-center gap-2 text-sm text-[var(--ink-soft)]">
                     <input
                       type="checkbox"
+                      className="t-check accent-[var(--stamp)]"
                       checked={f.required}
                       onChange={(e) => updateField(f.id, { required: e.target.checked })}
                     />
@@ -385,6 +386,15 @@ export function FormEditor({ form }: Props) {
           </p>
         </div>
       </aside>
+
+      {(copied || (message && message.tone === "ok")) && (
+        <div
+          className="t-toast fixed bottom-6 right-6 z-40 rounded-sm border-2 border-[var(--ink)] bg-[var(--sheet-raised)] px-4 py-2 text-sm text-[var(--ok)] is-open"
+          role="status"
+        >
+          {copied ? "Share link copied" : message?.text || "Saved"}
+        </div>
+      )}
     </div>
   );
 }

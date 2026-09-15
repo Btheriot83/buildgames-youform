@@ -82,3 +82,9 @@
 - verdict: Intro CTA now literal OK vs youform; dream-loop target locked from desk baseline. Bar still cooler/marketing; we keep clipboard job desk.
 - commit: dfe12283bf34b7ecdeddbd66d92923b0e11a5f0b
 
+## r11 — buttons
+- files: src/components/FormEditor.tsx
+- shot: gauntlet/shots-r4/r11-buttons-editor.png
+- verdict: toast recipe now on real copy/save success in editor; checkbox accent on required. youform has quieter chrome — we keep stamp toast.
+- commit: 5f7373ea9545b5b4b6d5466181992d89e1f14b83
+
