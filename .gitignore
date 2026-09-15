@@ -45,3 +45,5 @@ data/*.db-*
 test-results/
 playwright-report/
 polish-shots/
+.env
+.env.local

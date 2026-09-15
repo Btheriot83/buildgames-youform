@@ -114,3 +114,10 @@ This is a polished personal tool, not a multi-tenant SaaS.
 ## License
 
 Private contest candidate for Brandon Theriot / Build Games.
+
+
+## AI schema-from-brief
+Editor panel posts to `POST /api/ai/schema` with a plain-English brief.
+Server-side only. Reads `BUILD_GAMES_LLM_API_KEY` (preferred), then tries Anthropic-compatible (`ANTHROPIC_BASE_URL`), xAI, OpenAI.
+If no live provider answers, returns an honest local heuristic draft (`mode: "local"`).
+Never expose keys to the client bundle.
