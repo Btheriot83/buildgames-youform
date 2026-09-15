@@ -93,40 +93,56 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
 
   return (
     <div>
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="eyebrow">Desk</p>
-          <h1 className="font-letter mt-2 text-4xl tracking-tight sm:text-5xl">
-            Correspondence desk
-          </h1>
-          <p className="mt-3 max-w-xl text-[var(--ink-soft)]">
-            One letter at a time. Draft the questions from a brief, share the link, read the replies.
-          </p>
+      <div className="desk-billboard">
+        <div className="desk-billboard-copy">
+          <div>
+            <p className="eyebrow">Correspondence desk</p>
+            <h1 className="billboard-title">
+              A letter.
+              <br />
+              One question
+              <br />
+              at a time.
+            </h1>
+            <p className="mt-4 max-w-xl text-lg text-[var(--ink-soft)]">
+              Draft questions from a brief. Share the link. Read the replies on this blotter — not a survey wizard.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" className="btn btn-primary" onClick={createForm} disabled={busy}>
+              New letter
+            </button>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              disabled={busy}
+              onClick={() => fileRef.current?.click()}
+            >
+              Import JSON
+            </button>
+            <input
+              ref={fileRef}
+              type="file"
+              accept="application/json,.json"
+              className="sr-only"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) void onImport(f);
+                e.target.value = "";
+              }}
+            />
+          </div>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <button type="button" className="btn btn-primary" onClick={createForm} disabled={busy}>
-            New letter
-          </button>
-          <button
-            type="button"
-            className="btn btn-ghost"
-            disabled={busy}
-            onClick={() => fileRef.current?.click()}
-          >
-            Import JSON
-          </button>
-          <input
-            ref={fileRef}
-            type="file"
-            accept="application/json,.json"
-            className="sr-only"
-            onChange={(e) => {
-              const f = e.target.files?.[0];
-              if (f) void onImport(f);
-              e.target.value = "";
-            }}
-          />
-        </div>
+        <aside className="desk-materials" aria-hidden>
+          <figure className="desk-plate">
+            <img src="/art/empty-desk.png" alt="" />
+            <figcaption>Cream blotter · north window · iron-gall</figcaption>
+          </figure>
+          <div className="seal-plate">
+            <img src="/art/wax-seal.png" alt="" />
+            <p>Terracotta wax · seal presses on done</p>
+          </div>
+        </aside>
       </div>
 
       {(error || ok) && (
@@ -166,7 +182,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
               {forms.map((f) => (
                 <li
                   key={f.id}
-                  className="letter-sheet !min-h-0 flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between"
+                  className="letter-sheet letter-tray !min-h-0 flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="relative z-[1] min-w-0">
                     <Link

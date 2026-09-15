@@ -237,3 +237,99 @@ a { color: inherit; text-decoration: none; }
   animation: ink-underline 480ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
   margin-top: 0.85rem;
 }
+
+/* —— VISIBLE DELTA — Sunlit blotter billboard (identity amplified, not reseeding) —— */
+.blotter-tape {
+  display: flex; gap: 1.75rem; align-items: center; justify-content: center; flex-wrap: wrap;
+  background: var(--ember); color: #fff8f0;
+  border-bottom: 3px solid var(--ink);
+  padding: 0.55rem 1rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.blotter-tape span:nth-child(even) { color: #ffe7c8; }
+.blotter-tape span:nth-child(odd) { color: #fff8f0; }
+
+.desk-billboard {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.15fr) minmax(240px, 0.85fr);
+  gap: 1.75rem;
+  align-items: start;
+}
+.desk-billboard-copy { display: grid; gap: 1.25rem; }
+.desk-billboard h1.billboard-title {
+  font-family: var(--font-letter), Georgia, serif;
+  font-size: clamp(3.1rem, 8vw, 5.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  font-weight: 620;
+  max-width: 11ch;
+  margin: 0.15rem 0 0;
+  color: var(--ink);
+}
+.desk-materials {
+  display: grid; gap: 0.9rem;
+  position: sticky; top: 1.25rem;
+}
+.desk-plate {
+  margin: 0;
+  border: 2px solid var(--ink);
+  box-shadow: 12px 12px 0 var(--ember);
+  background: var(--paper-raised);
+  overflow: hidden;
+}
+.desk-plate img {
+  display: block; width: 100%; height: auto; min-height: 180px; object-fit: cover;
+  filter: contrast(1.05) saturate(0.92);
+}
+.desk-plate figcaption {
+  margin: 0; padding: 0.45rem 0.75rem;
+  border-top: 2px solid var(--ink);
+  background: color-mix(in srgb, var(--ember) 14%, var(--paper-raised));
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink);
+}
+.seal-plate {
+  border: 2px solid var(--ink);
+  background: var(--paper-raised);
+  box-shadow: 8px 8px 0 var(--moss);
+  padding: 0.85rem;
+  display: grid; place-items: center; gap: 0.5rem;
+}
+.seal-plate img { width: min(140px, 55%); height: auto; }
+.seal-plate p {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-mute); text-align: center;
+}
+.letter-sheet.letter-tray {
+  box-shadow: 10px 10px 0 color-mix(in srgb, var(--ember) 35%, transparent), var(--shadow);
+  border: 2px solid var(--rule-strong);
+}
+.letter-sheet.letter-tray::after {
+  content: "";
+  position: absolute; right: 14px; top: 14px;
+  width: 36px; height: 36px;
+  background: url("/art/wax-seal.png") center / contain no-repeat;
+  opacity: 0.92;
+  pointer-events: none;
+}
+.site-mark-lg {
+  width: 56px; height: 56px;
+  box-shadow: 4px 4px 0 var(--ember);
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+}
+body {
+  background-image:
+    linear-gradient(rgba(239, 230, 216, 0.72), rgba(239, 230, 216, 0.78)),
+    url("/art/paper-fiber.png");
+  background-size: auto, 380px auto;
+}
+@media (max-width: 880px) {
+  .desk-billboard { grid-template-columns: 1fr; }
+  .desk-materials { position: relative; top: auto; }
+  .desk-billboard h1.billboard-title { max-width: 14ch; font-size: clamp(2.6rem, 12vw, 3.8rem); }
+}
