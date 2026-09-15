@@ -9,12 +9,14 @@ import {
 } from "./forms";
 import type { AppDatabase } from "./db";
 
-const SAMPLE_FLAG = "sample_seeded_v2";
+const SAMPLE_FLAG = "sample_seeded_v3";
 const LEGACY_SLUGS = [
   "sample-studio-intake",
   "sample-event-rsvp",
   "studio-intake",
   "event-rsvp",
+  "az-diesel-intake",
+  "mesa-yard-walk",
 ];
 
 function wipeLegacyDemos(db?: AppDatabase): void {
@@ -37,7 +39,8 @@ export function ensureSampleData(db?: AppDatabase): void {
 
   wipeLegacyDemos(db);
 
-  if (listForms(db).length > 0) {
+  // If non-demo user forms remain, keep them and still ensure demo clipboard exists.
+  if (getFormBySlug("az-diesel-intake", db)) {
     setMeta(SAMPLE_FLAG, "1", db);
     return;
   }

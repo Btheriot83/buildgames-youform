@@ -107,7 +107,7 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
               Read replies.
             </h1>
             <p className="mt-4 max-w-xl text-lg text-[var(--ink-soft)]">
-              Build a conversational intake on a canary clipboard. One question at a time for the public link — replies land back on this desk.
+              This desk is a form builder: write the questions, share /f/… for one-at-a-time public fill, then read replies here.
             </p>
             <div className="job-loop mt-4" aria-label="Product loop">
               <span>Write</span>
