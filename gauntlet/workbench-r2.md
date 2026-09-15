@@ -37,3 +37,7 @@
 **Visible delta:** Demo rail becomes “Walkthrough · 60 seconds” with 1/2/3 chips + matching CTAs (Edit → Fill → Replies).
 **PR:** pending
 
+### R8 — New-form defaults are real intake questions
+**Visible delta:** “Write questions” creates a 4-line intake (who / contact / need / urgent) instead of a single Untitled name field — first-run editor looks like a real form immediately.
+**PR:** pending
+
