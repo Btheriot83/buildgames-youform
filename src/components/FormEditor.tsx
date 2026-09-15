@@ -170,7 +170,7 @@ export function FormEditor({ form }: Props) {
     <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
       <section className="card p-6 sm:p-8">
         <p className="eyebrow">Schema</p>
-        <h1 className="font-letter mt-2 text-3xl tracking-tight">Compose the letter</h1>
+        <h1 className="font-letter mt-2 text-3xl tracking-tight">Write the questions</h1>
 
         <div className="mt-6 border-b border-[var(--rule)] pb-6">
           <div className="flex flex-wrap items-center justify-between gap-2">
@@ -186,11 +186,11 @@ export function FormEditor({ form }: Props) {
             </span>
           </div>
           <p className="mt-2 text-sm text-[var(--ink-soft)]">
-            Tell us what you need to ask. We draft the questions; you keep the pen.
+            Describe the intake in plain English. We draft the fields; you keep the clipboard.
           </p>
           <textarea
             className="field-box mt-3 min-h-[96px]"
-            placeholder="e.g. Wedding RSVP: name, email, attending yes/no, guest count, meal choice (chicken/fish/veg), notes"
+            placeholder="e.g. Mobile diesel intake: caller name, cell, unit/plate, symptom (no-start/derate/DEF), yard location, driver waiting yes/no"
             value={brief}
             onChange={(e) => setBrief(e.target.value)}
             aria-label="Plain-English form brief"
@@ -332,7 +332,7 @@ export function FormEditor({ form }: Props) {
 
         <div className="mt-8 flex flex-wrap gap-3">
           <button type="button" className="btn btn-primary" onClick={save} disabled={saving}>
-            {saving ? "Saving…" : "Save letter"}
+            {saving ? "Saving…" : "Save form"}
           </button>
           <button type="button" className="btn btn-ghost text-[var(--danger)]" onClick={removeForm}>
             Delete
@@ -348,7 +348,7 @@ export function FormEditor({ form }: Props) {
       <aside className="space-y-4">
         {schema.fields.length > 0 && (
           <div className="letter-sheet !min-h-0 p-5">
-            <p className="relative z-[1] eyebrow">Letter preview</p>
+            <p className="relative z-[1] eyebrow">Question preview</p>
             <ol className="relative z-[1] mt-3 space-y-2">
               {schema.fields.map((f, i) => (
                 <li key={f.id} className="font-letter text-[1.05rem] leading-snug text-[var(--ink)]">
@@ -367,7 +367,7 @@ export function FormEditor({ form }: Props) {
               {copied ? "Copied" : "Copy link"}
             </button>
             <a className="btn btn-ghost" href={`/f/${slug}`} target="_blank" rel="noreferrer">
-              Open public form
+              Open public fill
             </a>
             <a className="btn btn-ghost" href={`/forms/${form.id}/responses`}>
               Responses
@@ -378,7 +378,7 @@ export function FormEditor({ form }: Props) {
           </p>
         </div>
         <div className="card overflow-hidden">
-          <img src="/art/wax-seal.png" alt="" className="mx-auto w-40 p-6" />
+          <img src="/art/shop-stamp.jpg" alt="" className="mx-auto w-40 p-6" />
         </div>
       </aside>
     </div>

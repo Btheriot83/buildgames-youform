@@ -22,7 +22,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const meta = formMetaSchema.partial({ slug: true }).parse({
-      title: body.title ?? "Untitled form",
+      title: body.title ?? "New intake form",
       description: body.description ?? "",
       slug: body.slug,
       webhook_url: body.webhook_url ?? null,

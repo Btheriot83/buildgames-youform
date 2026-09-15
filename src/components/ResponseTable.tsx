@@ -42,10 +42,10 @@ export function ResponseTable({ form, initialResponses }: Props) {
     <div>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="eyebrow">Inbox</p>
+          <p className="eyebrow">Replies</p>
           <h1 className="font-display mt-2 text-3xl tracking-tight">{form.title}</h1>
           <p className="mt-2 text-[var(--ink-mute)]">
-            {responses.length} response{responses.length === 1 ? "" : "s"}
+            {responses.length} repl{responses.length === 1 ? "y" : "ies"}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -69,7 +69,7 @@ export function ResponseTable({ form, initialResponses }: Props) {
 
       {responses.length === 0 ? (
         <div className="card mt-8 p-10 text-center text-[var(--ink-soft)]">
-          No replies yet. Share{" "}
+          No replies yet. Share the public fill{" "}
           <a className="underline underline-offset-4" href={`/f/${form.slug}`}>
             /f/{form.slug}
           </a>
