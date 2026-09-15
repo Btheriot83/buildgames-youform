@@ -37,3 +37,9 @@
 - verdict: Intro OK CTA closer to youform.com OK affordance; bar A/B captured — youform still cooler/whiter, we keep canary clipboard.
 - commit: c8f8211b08a99499a8d7e6a6163067fb60bd3cd0
 
+## r6 — buttons
+- files: src/components/ConversationalForm.tsx, src/components/FormEditor.tsx
+- shot: gauntlet/shots-r4/r6-buttons-fill-q.png, gauntlet/shots-r4/r6-success-check-done.png
+- verdict: success-check now fires on real submit-done (not CSS-only); toast on copy if wired. youform.com uses soft confirm — we keep stamp-red check on canary.
+- commit: 06e65fe2351080f210a8f892bddf90fc176b1e0d
+

@@ -423,14 +423,23 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
       {phase === "done" && (
         <div key={`done-${animKey}`} className="letter-sheet step-enter mt-6 p-10 text-center">
           <div className="relative z-[1]">
-            <img
-              src="/art/shop-stamp.jpg"
-              alt=""
-              width={88}
-              height={88}
-              className="seal-press mx-auto rounded-full shadow-md"
+            <span
+              className="t-success-check mx-auto block"
               data-state={checkIn ? "in" : "out"}
-            />
+              aria-hidden="true"
+            >
+              <svg width="88" height="88" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="22" stroke="var(--stamp)" strokeWidth="3" fill="var(--sheet-raised)" />
+                <path
+                  d="M14 24.5 L21 31.5 L34 16.5"
+                  stroke="var(--stamp)"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  pathLength="20"
+                />
+              </svg>
+            </span>
             <h2 className="letter-question mt-6 text-3xl">Stamped.</h2>
             <p className="mx-auto mt-4 max-w-md text-[var(--ink-soft)]">{thankYou}</p>
           </div>
