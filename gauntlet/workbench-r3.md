@@ -37,3 +37,12 @@ Inherited deeper board / hotter canary from R1 (verified).
 ### R12 — Hint text readability
 letter-hint → ink-soft + medium weight (less wash).
 
+### R13 — Fill stage taller
+Letter/clip sheet min-height ↑ for youform-like breathing room.
+### R14 — Replies meta contrast
+Card timestamps ink-soft (readable on canary).
+### R15 — Progress seal dots
+Ink-bordered dots (flat) — clearer progress vs bar.
+### R16 — Continue CTA copy
+“OK — Continue” / stamp submit — closer to youform OK affordance without copying brand.
+
