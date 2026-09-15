@@ -103,7 +103,7 @@ a { color: inherit; text-decoration: none; }
 }
 .btn-amber:hover:not(:disabled), .btn-moss:hover:not(:disabled) { background: #fff3c4; }
 /* Ghost = low priority */
-.btn-ghost { background: transparent; color: var(--ink-soft); border-color: var(--rule-strong); box-shadow: none; }
+.btn-ghost { background: var(--sheet); color: var(--ink-soft); border-color: var(--ink); box-shadow: none; }
 .btn-ghost:hover:not(:disabled) { background: var(--sheet); border-color: var(--ink); color: var(--ink); }
 
 .field {

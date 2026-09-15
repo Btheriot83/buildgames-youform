@@ -136,3 +136,9 @@
 - verdict: Card/plate shadow weights toward dream target materials; youform avoids hard offsets entirely.
 - commit: 43f25d5788faabe24afbb246c566d127c0253655
 
+## r20 — buttons
+- files: src/app/globals.css, src/app/page.tsx
+- shot: gauntlet/shots-r4/r20-buttons-desk.png, gauntlet/shots-r4/r20-bar-home.png
+- verdict: Ghost buttons readable on board + footer tighten; final bar A/B — youform wins cool marketing polish; Ember wins clipboard job clarity.
+- commit: 6220054dc7d84783e4e559862f61c550aec71058
+
