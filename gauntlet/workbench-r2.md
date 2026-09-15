@@ -25,3 +25,7 @@
 **Visible delta:** Sticky share card; primary CTA “Open public fill”; copy explains hand-the-clipboard; replies link renamed.
 **PR:** pending
 
+### R5 — Replies as filled clipboard cards
+**Visible delta:** Each reply is a tray card with lead answer + key fields; PT timestamps; spreadsheet demoted below; Open public fill on replies page.
+**PR:** pending
+
