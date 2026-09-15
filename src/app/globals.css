@@ -164,10 +164,10 @@ a { color: inherit; text-decoration: none; }
 }
 .letter-question, .sheet-question {
   font-family: var(--font-sheet), Georgia, serif;
-  font-weight: 650;
-  font-size: clamp(2.05rem, 4.6vw, 3rem);
-  line-height: 1.22;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  font-size: clamp(2.15rem, 4.8vw, 3.15rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
   color: var(--ink);
 }
 .letter-hint { font-size: 0.85rem; color: var(--ink-soft); font-weight: 500; }
