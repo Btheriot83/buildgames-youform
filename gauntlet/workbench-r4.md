@@ -5,6 +5,21 @@
 **Demo:** https://buildgames-youform.vercel.app  
 **Hard bars:** Flat paper/ink · real AZ data · job ≤3s · separate `rN:` commits
 
+## Transitions.dev wiring (real actions)
+| Recipe | Fires on |
+| --- | --- |
+| success-check | Public fill submit → done phase (`ConversationalForm`) |
+| toast | Dashboard import success; FormEditor copy link (r11) |
+| error-state-shake | Fill validation fail (`is-shaking` on field) |
+| skeleton-reveal | Desk form list first paint (`Dashboard` t-skel) |
+| texts-reveal / stagger | Fill intro title/description (`t-stagger`) |
+| notification-badge | Replies count badge on desk rows (`t-badge`) |
+
+## Dream-loop
+- baseline: `.dream-loop/baseline.png` (desk core job)
+- target: `.dream-loop/target.png` (Higgsfield refine of baseline; gitignored)
+- shot refs: `gauntlet/shots-r4/dream-baseline-desk.png`, `dream-target-ref.png`
+
 ## Round log
 
 ## r1 — contrast
@@ -60,4 +75,10 @@
 - shot: gauntlet/shots-r4/r9-buttons-desk.png
 - verdict: Row actions quieter Edit/Replies, louder Open fill — closer to youform focus on the fill path.
 - commit: 81f4bbd72fe5b42add0a23a6eb99aeeda7fae8ba
+
+## r10 — bar gap
+- files: src/components/ConversationalForm.tsx, gauntlet/workbench-r4.md, gauntlet/shots-r4/dream-baseline-desk.png, gauntlet/shots-r4/dream-target-ref.png
+- shot: gauntlet/shots-r4/r10-bargap-fill.png, gauntlet/shots-r4/r10-bar-home.png
+- verdict: Intro CTA now literal OK vs youform; dream-loop target locked from desk baseline. Bar still cooler/marketing; we keep clipboard job desk.
+- commit: dfe12283bf34b7ecdeddbd66d92923b0e11a5f0b
 

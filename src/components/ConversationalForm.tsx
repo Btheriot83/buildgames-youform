@@ -274,7 +274,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
                 setAnimKey((k) => k + 1);
               }}
             >
-              Start answering
+              OK
             </button>
             <span className="letter-hint">
               {fields.length} question{fields.length === 1 ? "" : "s"} · Enter advances
