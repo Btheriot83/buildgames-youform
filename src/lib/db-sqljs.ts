@@ -1,6 +1,4 @@
 import fs from "fs";
-import path from "path";
-import { createRequire } from "module";
 import type { AppDatabase, RunResult, Statement } from "./db-types";
 
 type SqlJsDatabase = {
@@ -31,7 +29,7 @@ function wrapDatabase(
   const persist = () => {
     if (!persistPath) return;
     try {
-      fs.mkdirSync(path.dirname(persistPath), { recursive: true });
+      fs.mkdirSync(require("path").dirname(persistPath), { recursive: true });
       fs.writeFileSync(persistPath, Buffer.from(raw.export()));
     } catch {
       // Ephemeral FS / cold start — demo data may reset.
@@ -104,14 +102,18 @@ function wrapDatabase(
 }
 
 /**
- * Load sql.js asm.js via createRequire so Vercel file tracing can ship the file
- * without needing sql-wasm.wasm on disk.
+ * Bundle sql.js asm.js into the server chunk (no wasm, no external package).
  */
 async function initSqlJsEngine(): Promise<SqlJsStatic> {
-  const require = createRequire(path.join(process.cwd(), "package.json"));
-  const initSqlJs = require("sql.js/dist/sql-asm.js") as (
+  // Relative vendor copy — guaranteed in the serverless bundle.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const mod = require("./vendor/sql-asm.js");
+  const initSqlJs = (typeof mod === "function" ? mod : mod.default) as (
     cfg?: Record<string, unknown>
   ) => Promise<SqlJsStatic>;
+  if (typeof initSqlJs !== "function") {
+    throw new Error("sql-asm.js did not export an initializer function");
+  }
   return (await initSqlJs({})) as SqlJsStatic;
 }
 
