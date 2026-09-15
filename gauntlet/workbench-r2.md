@@ -33,3 +33,7 @@
 **Visible delta:** Smaller tray stamp + padding so it doesn’t collide with titles/actions; Import demoted from equal CTA to quiet text link (job CTAs unambiguous).
 **PR:** pending
 
+### R7 — Numbered walkthrough on demo rail
+**Visible delta:** Demo rail becomes “Walkthrough · 60 seconds” with 1/2/3 chips + matching CTAs (Edit → Fill → Replies).
+**PR:** pending
+

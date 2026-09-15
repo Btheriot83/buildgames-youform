@@ -162,21 +162,26 @@ export function Dashboard({ initialForms }: { initialForms: FormRow[] }) {
       {demo && (
         <div className="demo-rail">
           <div>
-            <p className="eyebrow">First-run demo</p>
+            <p className="eyebrow">Walkthrough · 60 seconds</p>
             <p className="mt-1 font-sheet text-xl text-[var(--ink)]">{displayTitle(demo.title)}</p>
-            <p>
-              Open the public fill, answer like a driver on the roadside, then check replies on the desk.
+            <ol className="job-loop mt-3" aria-label="Walkthrough steps">
+              <span>1 Edit questions</span>
+              <span>2 Open public fill</span>
+              <span>3 Read replies</span>
+            </ol>
+            <p className="mt-3">
+              Answer like a roadside driver, then open replies — real Valley ops data is already on the clipboard.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Link className="btn btn-primary" href={`/f/${demo.slug}`} target="_blank">
-              Open public fill
-            </Link>
             <Link className="btn btn-ghost" href={`/forms/${demo.id}`}>
-              Edit questions
+              1 · Edit questions
             </Link>
-            <Link className="btn btn-ghost" href={`/forms/${demo.id}/responses`}>
-              Read replies
+            <Link className="btn btn-primary" href={`/f/${demo.slug}`} target="_blank">
+              2 · Open public fill
+            </Link>
+            <Link className="btn btn-amber" href={`/forms/${demo.id}/responses`}>
+              3 · Read replies
             </Link>
           </div>
         </div>
