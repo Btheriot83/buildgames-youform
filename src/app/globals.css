@@ -80,7 +80,7 @@ a { color: inherit; text-decoration: none; }
 .card {
   background: var(--sheet-raised);
   border: 2px solid var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
   border-radius: 2px;
 }
 
@@ -285,7 +285,7 @@ a { color: inherit; text-decoration: none; }
 .desk-plate {
   margin: 0;
   border: 3px solid var(--ink);
-  box-shadow: 10px 10px 0 var(--stamp);
+  box-shadow: 8px 8px 0 var(--stamp);
   background: var(--sheet-raised);
   overflow: hidden;
 }

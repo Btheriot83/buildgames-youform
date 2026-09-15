@@ -130,3 +130,9 @@
 - verdict: Bigger seal dots + tighter cue copy; still clipboard progress language vs youform minimal bar.
 - commit: 317a7e65077bf9cb57a44a3365d1d3d365545541
 
+## r19 — contrast
+- files: src/app/globals.css
+- shot: gauntlet/shots-r4/r19-contrast-desk.png
+- verdict: Card/plate shadow weights toward dream target materials; youform avoids hard offsets entirely.
+- commit: 43f25d5788faabe24afbb246c566d127c0253655
+
