@@ -118,3 +118,9 @@
 - verdict: Choice chips heavier hit targets toward dream/youform OK targets; still hard-ink not soft pills.
 - commit: b98ee45cb10d804c9694313a79cf230bb40eb57c
 
+## r17 — fonts
+- files: src/app/globals.css
+- shot: gauntlet/shots-r4/r17-fonts-fill.png
+- verdict: Larger question + thicker field rule toward dream fill focus; youform uses big sans question — we keep sheet serif.
+- commit: 241185564ff9dfafd0bc13aed8511a14beff3b1a
+
