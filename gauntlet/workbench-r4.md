@@ -106,3 +106,9 @@
 - verdict: Tighter billboard/demo-rail toward dream target composition; youform home is marketing-hero, ours stays operational desk.
 - commit: fb25fe7f407378ff96f148215858bbbe2069eae0
 
+## r15 — contrast
+- files: src/app/globals.css, src/components/ConversationalForm.tsx
+- shot: gauntlet/shots-r4/r15-contrast-fill.png, gauntlet/shots-r4/r15-bar-home.png
+- verdict: Thicker stamp progress + darker secondary text; bar A/B — youform progress is minimal; ours stays clipboard hole-punch language.
+- commit: d855cb0cdb50ccdf15c50861b0b06051c80eb5b7
+

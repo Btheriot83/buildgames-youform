@@ -229,7 +229,7 @@ export function ConversationalForm({ slug, title, description, schema }: Props) 
       <p className="mb-4 max-w-xl text-[var(--ink-soft)]">One question on the clipboard — answer, then next.</p>
       <div className="mb-4 flex items-center gap-3">
         <div
-          className="h-[6px] min-w-0 flex-1 overflow-hidden border-2 border-[var(--ink)] bg-[var(--sheet-raised)]"
+          className="h-[8px] min-w-0 flex-1 overflow-hidden border-2 border-[var(--ink)] bg-[var(--sheet-raised)]"
           role="progressbar"
           aria-valuenow={Math.min(100, Math.round(progress))}
           aria-valuemin={0}
