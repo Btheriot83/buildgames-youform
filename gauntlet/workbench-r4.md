@@ -19,3 +19,9 @@
 - verdict: Heavier/tighter question type approaches youform one-question scale; serif still a Canary tell vs youform sans.
 - commit: 5ede9d460df259ae28230fd589005821ae2f2f73
 
+## r3 — buttons
+- files: src/app/globals.css
+- shot: gauntlet/shots-r4/r3-buttons-desk.png
+- verdict: Larger primary stamp CTA closer to youform OK hit-target; offset shadow still clipboard, not soft youform pill.
+- commit: fa0147dd588e1b3e124bb8ebfa85926c710dcf9c
+
