@@ -102,19 +102,86 @@ function wrapDatabase(
   };
 }
 
+/** Candidate filesystem locations for sql-wasm.wasm (Vercel tracing / local / public). */
+function candidateWasmPaths(): string[] {
+  const cwd = process.cwd();
+  const paths = [
+    path.join(cwd, "node_modules", "sql.js", "dist", "sql-wasm.wasm"),
+    path.join(cwd, "public", "sql-wasm.wasm"),
+    path.join(cwd, ".next", "server", "chunks", "sql-wasm.wasm"),
+    // NFT / serverless layout often nests node_modules under the route
+    path.join(__dirname, "sql-wasm.wasm"),
+    path.join(__dirname, "..", "sql-wasm.wasm"),
+    path.join(__dirname, "node_modules", "sql.js", "dist", "sql-wasm.wasm"),
+    path.join(
+      __dirname,
+      "..",
+      "node_modules",
+      "sql.js",
+      "dist",
+      "sql-wasm.wasm"
+    ),
+    path.join(
+      __dirname,
+      "..",
+      "..",
+      "node_modules",
+      "sql.js",
+      "dist",
+      "sql-wasm.wasm"
+    ),
+    path.join(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "node_modules",
+      "sql.js",
+      "dist",
+      "sql-wasm.wasm"
+    ),
+  ];
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const resolved = require.resolve("sql.js/dist/sql-wasm.wasm");
+    paths.unshift(resolved);
+  } catch {
+    // package exports may not expose .wasm — ignore
+  }
+
+  return paths;
+}
+
+async function loadWasmBinary(): Promise<ArrayBuffer> {
+  for (const wasmPath of candidateWasmPaths()) {
+    try {
+      if (fs.existsSync(wasmPath)) {
+        return fs.readFileSync(wasmPath).buffer;
+      }
+    } catch {
+      // try next candidate
+    }
+  }
+
+  // CDN fallback — contest demo / cold serverless without traced wasm
+  const cdnUrl =
+    "https://cdn.jsdelivr.net/npm/sql.js@1.14.2/dist/sql-wasm.wasm";
+  const res = await fetch(cdnUrl);
+  if (!res.ok) {
+    throw new Error(
+      `sql.js wasm missing locally and CDN fetch failed (${res.status}): ${cdnUrl}`
+    );
+  }
+  return await res.arrayBuffer();
+}
+
 export async function openSqlJsDatabase(opts: {
   filePath: string | null;
   memory?: boolean;
 }): Promise<AppDatabase> {
   const initSqlJs = (await import("sql.js")).default;
-  const wasmPath = path.join(
-    process.cwd(),
-    "node_modules",
-    "sql.js",
-    "dist",
-    "sql-wasm.wasm"
-  );
-  const wasmBinary = fs.readFileSync(wasmPath).buffer;
+  const wasmBinary = await loadWasmBinary();
   const SQL = (await initSqlJs({ wasmBinary })) as SqlJsStatic;
 
   let raw: SqlJsDatabase;
