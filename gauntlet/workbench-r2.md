@@ -41,3 +41,7 @@
 **Visible delta:** “Write questions” creates a 4-line intake (who / contact / need / urgent) instead of a single Untitled name field — first-run editor looks like a real form immediately.
 **PR:** pending
 
+### R9 — Anti-slop / residual letter voice kill
+**Visible delta:** Fill hint “Pick one”; editor “Add question”; aside shows clipboard photo plate (not floating stamp); audit clean of gradients/backdrop-blur/shadow-lg/color-mix.
+**PR:** pending
+
